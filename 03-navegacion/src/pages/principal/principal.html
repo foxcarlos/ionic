@@ -1,0 +1,27 @@
+<ion-header>
+
+    <ion-navbar color="fudzy1">
+
+        <ion-title>Decimemijo App</ion-title>
+
+        <ion-buttons>
+          <button ion-button icon-only (click)="abrirMenu()">
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-buttons>
+
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <button ion-button color="primary" block (click)="navegarPagina()">
+      Ir a pagina 2
+    </button>
+
+    <button ion-button color="secondary" block [navPush]="pagina2">
+        Ir a pagina 3 HTML
+    </button>
+
+</ion-content>

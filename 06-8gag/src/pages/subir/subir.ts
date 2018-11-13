@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ViewController } from 'ionic-angular';
 
 
 @Component({
@@ -7,7 +8,11 @@ import { Component } from '@angular/core';
 })
 export class SubirPage {
 
-  constructor() {
+  constructor(private viewCtrl: ViewController) {
+  }
+
+  cerrar_modal(){
+    this.viewCtrl.dismiss();
   }
 
 

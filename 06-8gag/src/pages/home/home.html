@@ -1,45 +1,43 @@
 <ion-header>
-  <ion-navbar color="negro">
+    <ion-navbar color="negro">
 
-    <ion-title>
-      8Gag
-    </ion-title>
+        <ion-title>
+            8Gag
+        </ion-title>
 
-  </ion-navbar>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
 
 
-  <ion-card>
-    <img src="https://images.bestday.com/_lib/images/editorial/A-Donde-Ir-y-Que-Hacer-en-San-Martin-de-los-Andes/Main.jpg">
-    <ion-card-content>
+    <ion-card>
+        <img src="https://images.bestday.com/_lib/images/editorial/A-Donde-Ir-y-Que-Hacer-en-San-Martin-de-los-Andes/Main.jpg">
+        <ion-card-content>
 
-      <ion-card-title>
-        Post 1
-      </ion-card-title>
+            <ion-card-title>
+                Post 1
+            </ion-card-title>
 
-    </ion-card-content>
+        </ion-card-content>
 
-      <ion-row>
+        <ion-row>
 
-        <ion-col text-right>
+            <ion-col text-right>
 
-          <button ion-button clear small color="primary"
-            icon-left>
+                <button ion-button clear small color="primary" icon-left>
             <ion-icon name="share-alt"></ion-icon>
             Compartir
           </button>
 
-        </ion-col>
+            </ion-col>
 
-      </ion-row>
-  </ion-card>
+        </ion-row>
+    </ion-card>
 
-  <ion-fab bottom right>
-      <button ion-fab
-        color="danger">
+    <ion-fab bottom right>
+        <button ion-fab color="danger" (click)="mostrar_modal()">
         <ion-icon name="add"></ion-icon></button>
-   </ion-fab>
+    </ion-fab>
 
 </ion-content>

@@ -16,13 +16,9 @@ export class Tab1Page {
   personajePage: any = PersonajePage;
 
   constructor(public navCtrl: NavController,
-                public httpClient: HttpClient) {
+                ) {
       // this.personajes = PERSONAJES.slice(0);
-    this.films = this.httpClient.get('http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069/intranet/9796220');
-        this.films
-        .subscribe(data => {
-            console.log('my data: ', data);
-    })
+    
   }
 
   verPersonaje( personaje:any ){

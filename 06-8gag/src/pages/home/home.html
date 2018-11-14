@@ -11,12 +11,13 @@
 <ion-content>
 
 
-    <ion-card>
-        <img src="https://images.bestday.com/_lib/images/editorial/A-Donde-Ir-y-Que-Hacer-en-San-Martin-de-los-Andes/Main.jpg">
+    <ion-card *ngFor="let item of items | async">
+
+        <img [src]="item.img">
         <ion-card-content>
 
             <ion-card-title>
-                Post 1
+                {{item.titulo}}
             </ion-card-title>
 
         </ion-card-content>

@@ -23,16 +23,16 @@ export class SubirPage {
   mostrar_camara(){
     console.log('Hola');
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 50,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
     
     this.camera.getPicture(options).then((imageData) => {
-     // imageData is either a base64 encoded string or a file URI
-     // If it's base64 (DATA_URL):
+
      this.imagenPreview = 'data:image/jpeg;base64,' + imageData;
+     
     }, (err) => {
       console.error('Error en camara:', JSON.stringify(err));
     });

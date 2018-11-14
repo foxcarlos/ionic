@@ -4,6 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
 // firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
@@ -24,6 +27,7 @@ import { HomePage } from '../pages/home/home';
 import { SubirPage } from '../pages/subir/subir';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -35,7 +39,8 @@ import { SubirPage } from '../pages/subir/subir';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

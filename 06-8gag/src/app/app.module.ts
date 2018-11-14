@@ -7,6 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
 
+// Plugins
+import { Camera } from '@ionic-native/camera';
+
 // firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
@@ -52,6 +55,7 @@ import { SubirPage } from '../pages/subir/subir';
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

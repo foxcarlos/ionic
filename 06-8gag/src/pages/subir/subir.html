@@ -19,8 +19,8 @@
             <ion-input type="text" [(ngModel)]="titulo"></ion-input>
         </ion-item>
 
-        <ion-item>
-            <img src="https://images.bestday.com/_lib/images/editorial/A-Donde-Ir-y-Que-Hacer-en-San-Martin-de-los-Andes/Main.jpg" alt="">
+        <ion-item *ngIf="imagenPreview">
+            <img [src]="imagenPreview" alt="">
         </ion-item>
     </ion-list>
 
@@ -35,9 +35,9 @@
             </ion-col>
 
             <ion-col>
-                <button ion-button block icon-left>
+                <button ion-button block icon-left (click)="mostrar_camara()">
                 <ion-icon name="camera"></ion-icon>
-                Camara
+                &nbsp;Camara
               </button>
             </ion-col>
 

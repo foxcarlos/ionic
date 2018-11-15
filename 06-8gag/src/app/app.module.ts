@@ -9,6 +9,10 @@ import { PipesModule } from '../pipes/pipes.module';
 
 // Plugins
 import { Camera } from '@ionic-native/camera';
+import { ToastController } from 'ionic-angular';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { HttpClient } from '@angular/common/http';
+
 
 // firebase
 import { AngularFireModule } from '@angular/fire';
@@ -28,6 +32,7 @@ export const firebaseConfig = {
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SubirPage } from '../pages/subir/subir';
+import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
 
 
 
@@ -56,7 +61,11 @@ import { SubirPage } from '../pages/subir/subir';
     SplashScreen,
     AngularFireDatabase,
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ImagePicker,
+    ToastController,
+    HttpClient,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CargaArchivoProvider
   ]
 })
 export class AppModule {}

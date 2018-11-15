@@ -3,10 +3,19 @@
     <ion-navbar>
 
         <ion-buttons>
-            <button ion-button (click)="cerrar_modal()">Cerrar</button>
+            <button ion-button (click)="cerrar_modal()">
+                Cerrar
+            </button>
         </ion-buttons>
 
         <ion-title>{{titulo | placeHolder:"Crear nueva entrada"}}</ion-title>
+
+        <ion-buttons end>
+            <button ion-button (click)="crear_post()">
+                Crear Post
+            </button>
+        </ion-buttons>
+
     </ion-navbar>
 
 </ion-header>
@@ -19,8 +28,7 @@
             <ion-input type="text" [(ngModel)]="titulo"></ion-input>
         </ion-item>
 
-        <!--*ngIf="imagenPreview"-->
-        <ion-item>
+        <ion-item *ngIf="imagenPreview">
             <img [src]="imagenPreview">
         </ion-item>
 
@@ -30,17 +38,17 @@
         <ion-row>
 
             <ion-col>
-                <button ion-button block icon-left>
-            <ion-icon name="photos"></ion-icon>
-            Seleccionar
-          </button>
+                <button ion-button block icon-left (click)="seleccionar_foto()">
+                    <ion-icon name="photos"></ion-icon>
+                    &nbsp;Seleccionar
+                </button>
             </ion-col>
 
             <ion-col>
                 <button ion-button block icon-left (click)="mostrar_camara()">
-                <ion-icon name="camera"></ion-icon>
-                &nbsp;Camara
-              </button>
+                    <ion-icon name="camera"></ion-icon>
+                    &nbsp;Camara
+                </button>
             </ion-col>
 
         </ion-row>

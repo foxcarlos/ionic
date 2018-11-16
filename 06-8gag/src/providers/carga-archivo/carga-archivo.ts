@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import * as firebase from 'firebase';
+//import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+
+
 import { ToastController } from 'ionic-angular';
 
 

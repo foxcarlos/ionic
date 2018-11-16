@@ -19,7 +19,7 @@ export class CargaArchivoProvider {
     
   }
 
-  cargar_imagen_firebase( archivo: ArchivoSubir){
+  cargar_imagen_firebase( archivo: ArchivoSubir ){
     let promesa = new Promise( (resolve, reject) =>{
       console.log('ver archivo');
       console.log(archivo.img);

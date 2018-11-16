@@ -70,7 +70,7 @@ export class SubirPage {
     }
     console.log(archivo.img)
 
-    // this._cap.cargar_imagen_firebase(archivo);
+    this._cap.cargar_imagen_firebase(archivo);
   }
 
 }

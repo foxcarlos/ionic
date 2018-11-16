@@ -68,8 +68,9 @@ export class SubirPage {
       img: this.imagen64,
       titulo: this.titulo
     }
+    console.log(archivo.img)
 
-    this._cap.cargar_imagen_firebase(archivo);
+    // this._cap.cargar_imagen_firebase(archivo);
   }
 
 }

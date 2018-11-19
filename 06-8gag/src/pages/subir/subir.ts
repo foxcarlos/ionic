@@ -68,7 +68,7 @@ export class SubirPage {
       img: this.imagen64,
       titulo: this.titulo
     }
-    console.log(archivo.img)
+    console.log('Entreo al metodo crear_post() de subir.ts y llama al provider cargar_imagen_firebase()');
 
     this._cap.cargar_imagen_firebase(archivo);
   }

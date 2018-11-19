@@ -22,37 +22,37 @@ export class CargaArchivoProvider {
   cargar_imagen_firebase( archivo: ArchivoSubir ){
     let promesa = new Promise( (resolve, reject) =>{
       console.log('ver archivo');
-      console.log(archivo.img);
-      
+        // console.log(archivo.img);
+
       this.mostrar_toast('Cargando...');
 
       // Firebase
       let storageRef = firebase.storage().ref();
       let nombreArchivo: string = new Date().valueOf().toString();
 
-      let uploadTask: firebase.storage.UploadTask =
-        storageRef.child(`img/${ nombreArchivo }`)
-                  .putString( archivo.img, 'base64', { contentType: 'image/jpeg' }  );
+      let uploadTask: firebase.storage.UploadTask = storageRef.child(`img/${ nombreArchivo }`).putString( archivo.img, 'base64', { contentType: 'image/jpeg' }  );
 
-         uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
+      console.log('ver uploadtask');
+      console.log(uploadTask);
+
+        /*
+        uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
             ()=>{ }, // saber el % de cuantos Mbs se han subido
             ( error ) =>{
-              // manejo de error
-              console.log("ERROR EN LA CARGA");
-              console.log(JSON.stringify( error ));
-              this.mostrar_toast(JSON.stringify( error ));
-              reject();
+                // manejo de error
+                console.log("ERROR EN LA CARGA");
+                console.log(JSON.stringify( error ));
+                this.mostrar_toast(JSON.stringify( error ));
+                reject();
             },
             ()=>{
-              // TODO BIEN!!
-              console.log('Archivo subido');
-              this.mostrar_toast('Imagen cargada correctamente');
-              resolve();
+                // TODO BIEN!!
+                console.log('Archivo subido');
+                this.mostrar_toast('Imagen cargada correctamente');
+                resolve();
             }
 
-          )
-
-
+            )*/
 
     });
     return promesa;

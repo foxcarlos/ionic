@@ -54,7 +54,7 @@ export class SubirPage {
 
     this.imagePicker.getPictures(opciones).then((results) => {
       for (var i = 0; i < results.length; i++) {
-          console.log('Image URI: ' + results[i]);
+          console.log('Metodo Seleccionar Foto: Image URI: ' + results[i]);
           this.imagenPreview = 'data:image/jpeg;base64,' + results[i];
           this.imagen64 = results[i];
       }

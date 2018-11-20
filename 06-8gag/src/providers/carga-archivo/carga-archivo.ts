@@ -19,43 +19,50 @@ export class CargaArchivoProvider {
     
   }
 
-  cargar_imagen_firebase( archivo: ArchivoSubir ){
-    let promesa = new Promise( (resolve, reject) =>{
-      console.log('ver archivo');
-        // console.log(archivo.img);
+  cargar_imagen_firebase( archivo: ArchivoSubir){
 
-      this.mostrar_toast('Cargando...');
+    let promesa = new Promise( (resolve, reject)=>{
 
-      // Firebase
-      let storageRef = firebase.storage().ref();
-      let nombreArchivo: string = new Date().valueOf().toString();
+      this.mostrar_toast('XXXCargando...');
 
-      let uploadTask: firebase.storage.UploadTask = storageRef.child(`img/${ nombreArchivo }`).putString( archivo.img, 'base64', { contentType: 'image/jpeg' }  );
+      let storeRef = firebase.storage().ref();
+      let nombreArchivo:string = new Date().valueOf().toString(); // 1231231231
+      
+      this.mostrar_toast('Paso por aqui...');
+      
 
-      console.log('ver uploadtask');
-      console.log(uploadTask);
-
-        /*
-        uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
+      let uploadTask: firebase.storage.UploadTask =
+          storeRef.child(`img/${ nombreArchivo }`)
+                  .putString( archivo.img, 'base64', { contentType: 'image/jpeg' }  );
+         uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
             ()=>{ }, // saber el % de cuantos Mbs se han subido
             ( error ) =>{
-                // manejo de error
-                console.log("ERROR EN LA CARGA");
-                console.log(JSON.stringify( error ));
-                this.mostrar_toast(JSON.stringify( error ));
-                reject();
+              // manejo de error
+              console.log("ERROR EN LA CARGA");
+              console.log('ERROR EN LA CARGA:' +JSON.stringify( error ));
+              this.mostrar_toast(JSON.stringify( error ));
+              reject();
             },
             ()=>{
-                // TODO BIEN!!
-                console.log('Archivo subido');
-                this.mostrar_toast('Imagen cargada correctamente');
-                resolve();
+              // TODO BIEN!!
+              console.log('Archivo subido');
+              this.mostrar_toast('Imagen cargada correctamente');
+
+              // let url = uploadTask.snapshot.downloadURL;
+
+              // this.crear_post( archivo.titulo, url, nombreArchivo );
+
+              resolve();
             }
 
-            )*/
+          )
+
+
 
     });
+
     return promesa;
+
   }
 
   mostrar_toast(msg: string){
@@ -66,18 +73,7 @@ export class CargaArchivoProvider {
       toast.present();
   }
 
-  /*
-  getPeliculas(){
-    let URL = "http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069/centrocultural/cine"
-    
-    let promesa = new Promise( (resolve, reject) =>{
-      
-    });
-    return promesa;
-  }*/
-
-
-
+  
 }
 
 

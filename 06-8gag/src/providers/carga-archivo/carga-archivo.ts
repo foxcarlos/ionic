@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-//import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase';
 //import firebase from 'firebase/app';
 //import 'firebase/firestore';
@@ -10,8 +10,12 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class CargaArchivoProvider {
 
-  constructor(public toastCtrl: ToastController) {
-    console.log('Hello CargaArchivoProvider Provider');
+    imagenes: ArchivoSubir[] = [];
+
+    constructor(public toastCtrl: ToastController,
+                public afDB: AngularFireDatabase) {
+
+    console.log('Hola CargaArchivoProvider');
     
   }
 
@@ -24,7 +28,7 @@ export class CargaArchivoProvider {
       let uploadTask: firebase.storage.UploadTask =
           storeRef.child(`img/${ nombreArchivo }`)
                   .putString( archivo.img, 'base64', { contentType: 'image/jpeg' }  );
-      
+
       uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
             ()=>{ }, // saber el % de cuantos Mbs se han subido
             ( error ) =>{
@@ -38,9 +42,9 @@ export class CargaArchivoProvider {
               console.log('Imagen cargada correctamente');
               this.mostrar_toast('Imagen cargada correctamente');
 
-              // let url = uploadTask.snapshot.downloadURL;
+              let url = uploadTask.snapshot.downloadURL;
 
-              // this.crear_post( archivo.titulo, url, nombreArchivo );
+              this.crear_post( archivo.titulo, url, nombreArchivo );
 
               resolve();
             }
@@ -52,6 +56,22 @@ export class CargaArchivoProvider {
 
   }
 
+  private crear_post( titulo: string, url: string, nombreArchivo: string ){
+
+    let post: ArchivoSubir = {
+        img: url,
+        titulo: titulo,
+        key: nombreArchivo
+    };
+
+    console.log( JSON.stringify(post) );
+    // Esto sube los datos a firebase con un ID creado automaticamente
+    // this.afDB.list('/post').push(post);
+    this.afDB.object(`/post/${ nombreArchivo }`).update(post)
+
+    this.imagenes.push( post );
+  }
+
   mostrar_toast(msg: string){
       const toast = this.toastCtrl.create({
         message: msg,
@@ -60,7 +80,6 @@ export class CargaArchivoProvider {
       toast.present();
   }
 
-  
 }
 
 

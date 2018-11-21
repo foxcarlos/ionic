@@ -11,11 +11,11 @@ import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archiv
 })
 export class SubirPage {
 
-  titulo: string;
-  imagenPreview: string;
+  titulo: string = '';
+  imagenPreview: string = '';
   imagen64: string;
-  
-  constructor(private viewCtrl: ViewController, 
+
+  constructor(private viewCtrl: ViewController,
               private camera: Camera,
               private imagePicker: ImagePicker,
               public _cap: CargaArchivoProvider) {
@@ -70,7 +70,8 @@ export class SubirPage {
     }
     console.log('Entreo al metodo crear_post() de subir.ts y llama al provider cargar_imagen_firebase()');
 
-    this._cap.cargar_imagen_firebase(archivo);
+    this._cap.cargar_imagen_firebase(archivo)
+      .then( ()=>this.cerrar_modal() )
   }
 
 }

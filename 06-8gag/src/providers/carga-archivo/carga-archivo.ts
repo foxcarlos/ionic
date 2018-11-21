@@ -1,15 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-//import * as firebase from 'firebase';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-
-
+//import { AngularFireDatabase } from '@angular/fire/database';
+import * as firebase from 'firebase';
+//import firebase from 'firebase/app';
+//import 'firebase/firestore';
 
 import { ToastController } from 'ionic-angular';
-
-
 
 @Injectable()
 export class CargaArchivoProvider {
@@ -22,30 +18,24 @@ export class CargaArchivoProvider {
   cargar_imagen_firebase( archivo: ArchivoSubir){
 
     let promesa = new Promise( (resolve, reject)=>{
-
-      this.mostrar_toast('XXXCargando...');
-
       let storeRef = firebase.storage().ref();
       let nombreArchivo:string = new Date().valueOf().toString(); // 1231231231
-      
-      this.mostrar_toast('Paso por aqui...');
-      
 
       let uploadTask: firebase.storage.UploadTask =
           storeRef.child(`img/${ nombreArchivo }`)
                   .putString( archivo.img, 'base64', { contentType: 'image/jpeg' }  );
-         uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
+      
+      uploadTask.on( firebase.storage.TaskEvent.STATE_CHANGED,
             ()=>{ }, // saber el % de cuantos Mbs se han subido
             ( error ) =>{
               // manejo de error
-              console.log("ERROR EN LA CARGA");
               console.log('ERROR EN LA CARGA:' +JSON.stringify( error ));
               this.mostrar_toast(JSON.stringify( error ));
               reject();
             },
             ()=>{
               // TODO BIEN!!
-              console.log('Archivo subido');
+              console.log('Imagen cargada correctamente');
               this.mostrar_toast('Imagen cargada correctamente');
 
               // let url = uploadTask.snapshot.downloadURL;
@@ -55,10 +45,7 @@ export class CargaArchivoProvider {
               resolve();
             }
 
-          )
-
-
-
+      )
     });
 
     return promesa;

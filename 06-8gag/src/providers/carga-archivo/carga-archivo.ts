@@ -42,7 +42,15 @@ export class CargaArchivoProvider {
               console.log('Imagen cargada correctamente');
               this.mostrar_toast('Imagen cargada correctamente');
 
-              let url = uploadTask.snapshot.downloadURL;
+              //let url = uploadTask.snapshot.downloadURL;
+
+              uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                console.log('File available at', downloadURL);
+                let url = downloadURL;
+                });
+
+              console.log('Url de la Imagen', uploadTask.snapshot.downloadURL);
+              
 
               this.crear_post( archivo.titulo, url, nombreArchivo );
 
@@ -67,7 +75,7 @@ export class CargaArchivoProvider {
     console.log( JSON.stringify(post) );
     // Esto sube los datos a firebase con un ID creado automaticamente
     // this.afDB.list('/post').push(post);
-    this.afDB.object(`/post/${ nombreArchivo }`).update(post)
+    this.afDB.object(`/post/${ nombreArchivo }`).update(post);
 
     this.imagenes.push( post );
   }

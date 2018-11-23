@@ -25,22 +25,37 @@ export class SubirPage {
     this.viewCtrl.dismiss();
   }
 
+  
   mostrar_camara(){
     const options: CameraOptions = {
-        quality: 50,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
-      }
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }  
 
+    /*
     this.camera.getPicture(options).then((imageData) => {
-     //this.imagenPreview = 'data:image/jpeg;base64,' + imageData;
-     this.imagenPreview = imageData.split(',')[1];
-     this.imagen64 = imageData;
-
+      //this.imagenPreview = 'data:image/jpeg;base64,' + imageData;
+      console.log('xValor de imageData:', imageData);
+      this.imagenPreview = imageData.split(',')[1];
+      this.imagen64 = imageData;
+      console.log('imagenPreview', this.imagenPreview);
+      console.log('imagen64',this.imagen64);  
     }, (err) => {
-     console.log( "ERROR EN CAMARA", JSON.stringify(err) );
+      console.log( "ERROR EN CAMARA", JSON.stringify(err) );
+    });*/
+
+    this.camera.getPicture( options )
+    .then(imageData => {
+      console.log('imageData', imageData);
+      this.imagenPreview = `data:image/jpeg;base64,${imageData}`;
+      this.imagen64 = imageData;
+    })
+    .catch(error =>{
+      console.log( "ERROR EN CAMARA", JSON.stringify(err) );
     });
+
 
   }
 
@@ -64,12 +79,14 @@ export class SubirPage {
   }
 
   crear_post(){
+
+    //  Objeto archivo
     let archivo = {
       img: this.imagen64,
       titulo: this.titulo
     }
-    console.log('Entreo al metodo crear_post() de subir.ts y llama al provider cargar_imagen_firebase()');
 
+    // Cargar imagen en firebase
     this._cap.cargar_imagen_firebase(archivo)
       .then( ()=>this.cerrar_modal() )
   }

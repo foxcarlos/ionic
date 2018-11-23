@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase';
-//import firebase from 'firebase/app';
-//import 'firebase/firestore';
 
 import { ToastController } from 'ionic-angular';
 
@@ -22,8 +20,10 @@ export class CargaArchivoProvider {
   cargar_imagen_firebase( archivo: ArchivoSubir){
 
     let promesa = new Promise( (resolve, reject)=>{
+      this.mostrar_toast('Cargando imagen...');
+      
       let storeRef = firebase.storage().ref();
-      let nombreArchivo:string = new Date().valueOf().toString(); // 1231231231
+      let nombreArchivo:string = new Date().valueOf().toString();
 
       let uploadTask: firebase.storage.UploadTask =
           storeRef.child(`img/${ nombreArchivo }`)
@@ -44,15 +44,17 @@ export class CargaArchivoProvider {
 
               //let url = uploadTask.snapshot.downloadURL;
 
-              uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log('File available at', downloadURL);
-                let url = downloadURL;
-                });
-
-              console.log('Url de la Imagen', uploadTask.snapshot.downloadURL);
-              
-
-              this.crear_post( archivo.titulo, url, nombreArchivo );
+              uploadTask.snapshot.ref.getDownloadURL().then(
+                (downloadURL) => {
+                  let url = downloadURL;
+                  console.log(url);
+                  this.guadar_database( archivo.titulo, url, nombreArchivo );
+                },
+                (error) =>{
+                  console.log('Ocurrio un error al intentar obtener la url', error);
+                  
+                }
+                );
 
               resolve();
             }
@@ -64,7 +66,7 @@ export class CargaArchivoProvider {
 
   }
 
-  private crear_post( titulo: string, url: string, nombreArchivo: string ){
+  private guadar_database( titulo: string, url: string, nombreArchivo: string ){
 
     let post: ArchivoSubir = {
         img: url,
@@ -77,6 +79,7 @@ export class CargaArchivoProvider {
     // this.afDB.list('/post').push(post);
     this.afDB.object(`/post/${ nombreArchivo }`).update(post);
 
+    // Actualiza la lista de imagenes en el telefono
     this.imagenes.push( post );
   }
 

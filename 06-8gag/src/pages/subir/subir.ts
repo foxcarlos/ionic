@@ -53,7 +53,7 @@ export class SubirPage {
       this.imagen64 = imageData;
     })
     .catch(error =>{
-      console.log( "ERROR EN CAMARA", JSON.stringify(err) );
+      console.log( "ERROR EN CAMARA", JSON.stringify(error) );
     });
 
 

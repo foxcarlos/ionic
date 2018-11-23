@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import {  ModalController} from 'ionic-angular';
 import { SubirPage } from '../subir/subir';
 
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs/Observable';
+// import { AngularFireDatabase } from '@angular/fire/database';
+// import { Observable } from 'rxjs/Observable';
+import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archivo';
 
 @Component({
   selector: 'page-home',
@@ -11,12 +12,11 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
 
-  items: Observable<any[]>;
-  
+  // items: Observable<any[]>;
   constructor( private modalCtrl: ModalController,
-              afDB: AngularFireDatabase ) {
+                public _cap: CargaArchivoProvider) {
 
-    this.items = afDB.list('post').valueChanges();
+    // this.items = afDB.list('post').valueChanges();
     
   }
 

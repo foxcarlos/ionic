@@ -16,12 +16,15 @@ export class CargaArchivoProvider {
                 public afDB: AngularFireDatabase) {
 
     console.log('Hola CargaArchivoProvider');
-    
-    this.cargar_ultimo_key();
+
+    this.cargar_ultimo_key()
+      .subscribe( ()=>{
+          this.cargar_imagenes();
+      });
   }
-  
-  cargar_ultimo_key(){
-    this.afDB.list('/post', ref=>ref.orderByKey().limitToLast(1) )
+
+  private cargar_ultimo_key(){
+    return this.afDB.list('/post', ref=>ref.orderByKey().limitToLast(1) )
           .valueChanges()
           .map( (respon:any)=>{
             this.lastKey = respon[0].key;
@@ -29,11 +32,44 @@ export class CargaArchivoProvider {
           })
   }
 
+  cargar_imagenes(){
+      let cantidad_imagenes_cargar:number = 3
+      let promesa = new Promise( (resolve, reject)=>{
+          this.afDB.list('/post',
+              ref=> ref.limitToLast(cantidad_imagenes_cargar)
+                       .orderByKey()
+                       .endAt( this.lastKey )
+          ).valueChanges()
+          .subscribe( (respon:any)=>{
+                // Elimino la ultima imagen del arreglo
+                respon.pop();
+
+                if(respon.length == 0){
+                    console.log('Ya no hay mas imagenes para mostrar');
+                    resolve(false);
+                    return;
+                }
+
+                this.lastKey = respon[0].key;
+                // De todas lasimagenes obtenida de firebase
+                // recorrerlas y guardarlas en mi arreglo de imagenes
+                // para mostarlas en mi app
+                for( let i = respon.length-1; i>=0; i-- ){
+                    let post = respon[i];
+                    this.imagenes.push(post);
+                }
+                resolve(true);
+           });
+      });
+
+      return promesa;
+  }
+
   cargar_imagen_firebase( archivo: ArchivoSubir){
 
     let promesa = new Promise( (resolve, reject)=>{
       this.mostrar_toast('Cargando imagen...');
-      
+
       let storeRef = firebase.storage().ref();
       let nombreArchivo:string = new Date().valueOf().toString();
 
@@ -64,7 +100,7 @@ export class CargaArchivoProvider {
                 },
                 (error) =>{
                   console.log('Ocurrio un error al intentar obtener la url', error);
-                  
+
                 }
                 );
 

@@ -43,6 +43,7 @@ export class HomePage {
     let message = img.titulo;
     let image = img.img
     let url = img.img
+    console.log(message, image, url);
 
     /*
     this.socialSharing.shareFacebook(message, image, url).then(() => {

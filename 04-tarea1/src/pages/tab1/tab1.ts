@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 import { PERSONAJES } from '../../assets/personajes.data';
 import {PersonajePage} from '../index.paginas';
 
+// Provider
+import { RestProvider } from '../../providers/rest/rest';
+
 @Component({
   selector: 'page-tab1',
   templateUrl: 'tab1.html'
@@ -16,15 +19,22 @@ export class Tab1Page {
   personajePage: any = PersonajePage;
 
   constructor(public navCtrl: NavController,
-                ) {
+              public restProv: RestProvider) {
+
       // this.personajes = PERSONAJES.slice(0);
-    
   }
 
+  /*
   verPersonaje( personaje:any ){
     console.log(personaje);
     this.navCtrl.push(PersonajePage, { personaje });
+  }*/
+
+  verPersonaje( personaje:any ){
+    this.restProv.getProduct()
+    .subscribe( (response)=>{
+      console.log(response.cost);
+  });
   }
-
-
+  
 }

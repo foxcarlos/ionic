@@ -10,35 +10,36 @@
 <ion-content padding>
     <ion-list>
 
-        <button color="negro" ion-item *ngFor="let personaje of personajes; let i = index" (click)="verPersonaje( personaje )">
+        <button color="negro" ion-item *ngFor="let personaje of restProv.peliculas; let i = index" (click)="verPersonaje( personaje )">
 			<ion-thumbnail item-left>
-				<img [src]="personaje.img">
+				<img [src]="personaje.url_imagen">
 			</ion-thumbnail>
             <ion-grid no-padding>
             <ion-row>
               <ion-col col-12>
-                <h2>{{personaje.nombre}}</h2>
+                <h2>{{personaje.titulo}}</h2>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col col-12>
-                <p>{{personaje.titulo}}</p>
+                <p>{{personaje.clase}}</p>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col>
-                <p color="white">.</p>
+                <p color="white"> </p>
+                <br>
               </ion-col>
             </ion-row>
 
             <ion-row>
               <ion-col col-3>
-                <ion-note>Sala Auditorio</ion-note>
+                <ion-note>Sala:{{personaje.sala_hoy}}</ion-note>
               </ion-col>
               <ion-col col-3 offset-6>
-                <ion-note>17:45</ion-note>
+                <ion-note>{{personaje.horario_hoy}}</ion-note>
               </ion-col>
             </ion-row>
             </ion-grid>

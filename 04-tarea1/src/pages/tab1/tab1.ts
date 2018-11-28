@@ -22,6 +22,8 @@ export class Tab1Page {
               public restProv: RestProvider) {
 
       // this.personajes = PERSONAJES.slice(0);
+      console.log( 'LO que tiene peliculas', restProv.peliculas );
+      
   }
 
   /*
@@ -31,10 +33,14 @@ export class Tab1Page {
   }*/
 
   verPersonaje( personaje:any ){
-    this.restProv.getProduct()
-    .subscribe( (response)=>{
-      console.log(response.cost);
-  });
+    this.restProv.getPeliculas()
+      .subscribe( (response)=>{
+        console.log('Personajes', response);
+      },
+      (err) =>{
+        console.log('Ocurrio un Error:', err);
+      }
+    );
   }
   
 }

@@ -15,8 +15,12 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class RestProvider {
-  
-  baseUrl:string = 'http://localhost:8069/afip';
+
+  baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  // centrocultural/cine/
+  // 'http://localhost:8069/afip';
+
+  imagenes: ArchivoSubir[] = [];
 
   constructor(private httpClient: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -24,14 +28,15 @@ export class RestProvider {
 
   public getProduct(): Observable<Product> {
     return this.httpClient
-      .get(this.baseUrl + '/carlos/')
-      .map(response => {         
+      .get(this.baseUrl + '/centrocultural/cine/')
+      .map(response => {
+          console.log(response);
           return new Product(response);
       })
   }
 
 }
-  
+
 export class Product {
   id: number;
   name: string;
@@ -41,4 +46,18 @@ export class Product {
   constructor(values: Object = {}) {
        Object.assign(this, values);
   }
+}
+
+interface ArchivoSubir{
+    categoria: string,
+    clase: string,
+    fecha_hoy: string,
+    horario_hoy: string,
+    idioma: string,
+    lista_de_funciones: [],
+    resumen: string,
+    sala_hoy: string,
+    titulo_original: string,
+    trailer: string,
+    url_imagen: string,
 }

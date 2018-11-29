@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { LoadingController } from 'ionic-angular';
 
 import { HTTP } from '@ionic-native/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,6 +40,7 @@ import { RestProvider } from '../providers/rest/rest';
   providers: [
     StatusBar,
     SplashScreen,
+    LoadingController,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider

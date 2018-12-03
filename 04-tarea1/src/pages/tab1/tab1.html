@@ -17,7 +17,7 @@
             <ion-grid no-padding>
             <ion-row>
               <ion-col col-12>
-                <h2>{{personaje.titulo}}</h2>
+                <h2>{{personaje.name}}</h2>
               </ion-col>
             </ion-row>
 
@@ -36,10 +36,10 @@
 
             <ion-row>
               <ion-col col-3>
-                <ion-note>Sala:{{personaje.sala_hoy}}</ion-note>
+                <ion-note>Sala:{{personaje.sala_id[1]}}</ion-note>
               </ion-col>
               <ion-col col-3 offset-6>
-                <ion-note>{{personaje.horario_hoy}}</ion-note>
+                <ion-note>{{personaje.date_begin_located.split(',')[2]}}</ion-note>
               </ion-col>
             </ion-row>
             </ion-grid>

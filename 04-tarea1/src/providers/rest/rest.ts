@@ -12,7 +12,8 @@ export class RestProvider {
   // baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
   baseUrl:string = 'http://localhost:8069'
 
-  peliculas: ArchivoSubir[] = [];
+  // peliculas: ArchivoSubir[] = [];
+  peliculas: algo[] = [];
 
   constructor(private httpClient: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -28,13 +29,17 @@ export class RestProvider {
   }
 
   public getPeliculas(): Observable<Product> {
+    console.log('Entro a getPeli');
+    
     return this.httpClient
       .get(this.baseUrl + '/centrocultural/eventoshoy')
       .map((response:any) => {
+          console.log('response:',response);
+          
           for (const item of response) {
             let item2 = item;
-            console.log('item2', item2);
-            //this.peliculas.push(item);
+            console.log('item2', item2.address_id[1]);
+            this.peliculas.push(item);
           }
           return new Product(response);
       })
@@ -68,7 +73,99 @@ interface ArchivoSubir{
     url_imagen: string,
 }
 
-/*
+interface algo {
+  __last_update: string,
+ active: boolean,
+ address_id: [],
+ allowed_track_tag_ids:[],
+ auto_confirm: boolean,
+ badge_back: string,
+ badge_front: string,
+ badge_innerleft: string,
+ badge_innerright: string,
+ clase: string,
+ color: string,
+ company_id: [],
+ create_date: string,
+ create_uid: [],
+ date_begin: [],
+ date_begin_located: string,
+ date_end: string,
+ date_end_located: string,
+ date_tz: string,
+ description: string,
+ display_name: string,
+ event_logo: string,
+ event_mail_ids: [],
+ event_ticket_ids: [],
+ event_type_id: [],
+ id: number,
+ idioma: string,
+ is_online: boolean,
+ is_participating: boolean,
+ is_published: boolean,
+ is_seo_optimized: boolean,
+ lista_de_funciones: [],
+ menu_id: [],
+ message_attachment_count: number,
+ message_channel_ids: [],
+ message_follower_ids: [],
+ message_has_error: boolean,
+ message_has_error_counter: number,
+ message_ids: [],
+ message_is_follower: boolean,
+ message_main_attachment_id: [],
+ message_needaction: boolean,
+ message_needaction_counter: number,
+ message_partner_ids: [],
+ message_unread: boolean,
+ message_unread_counter: number,
+ name: string,
+ organizer_id: [],
+ registration_ids: [],
+ sala_id: [],
+ seats_availability: string,
+ seats_available: number,
+ seats_expected: number,
+ seats_max: number,
+ seats_min: number,
+ seats_reserved: number,
+ seats_unconfirmed: number,
+ seats_used: number,
+ sponsor_count: number,
+ sponsor_ids: [],
+ state: string,
+ titulo_original: string,
+ track_count: number,
+ track_ids: [],
+ track_menu_ids: [],
+ track_proposal_menu_ids: [],
+ tracks_tag_ids: [],
+ twitter_hashtag: string,
+ url_imagen: string,
+ url_trailer: string,
+ user_id: [],
+ website_id: [],
+ website_menu: [],
+ website_message_ids: [],
+ website_meta_description: string,
+ website_meta_keywords: string,
+ website_meta_og_img: string,
+ website_meta_title: string,
+ website_published: string,
+ website_track: string,
+ website_track_proposal: string,
+ website_url: string,
+ write_date: string,
+ write_uid: []
+}
+ 
+ 
+
+
+
+
+ /*
 {'__last_update': datetime.datetime(2018, 12, 2, 6, 2, 37, 719837),
  'active': True,
  'address_id': (41, 'Centro Cultural Cotesma'),

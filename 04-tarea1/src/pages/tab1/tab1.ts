@@ -28,12 +28,13 @@ export class Tab1Page {
       
   }
 
-  /*
+  
   verPersonaje( personaje:any ){
-    console.log(personaje);
+    console.log('verPersonaje:', personaje);
     this.navCtrl.push(PersonajePage, { personaje });
-  }*/
+  }
 
+  /*
   verPersonaje( personaje:any ){
     this.restProv.getPeliculas()
       .subscribe( (response)=>{
@@ -44,6 +45,7 @@ export class Tab1Page {
       }
     );
   }
+  */
 
   presentLoading() {
     const loader = this.loadingCtrl.create({

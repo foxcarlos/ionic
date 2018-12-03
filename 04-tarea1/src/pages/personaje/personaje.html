@@ -1,21 +1,22 @@
 <ion-header>
 
     <ion-navbar color="danger">
-        <ion-title text-center >{{personaje.nombre}}</ion-title>
+        <ion-title text-center>{{personaje.name}}</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding text-center>
-    <ion-img width="130" height="130" [src]="personaje.img"></ion-img>
+    <!--width="130" height="130"-->
+    <ion-img [src]="personaje.url_imagen"></ion-img>
 
     <h3>
-        {{personaje.nombre}}
+        {{personaje.name}}
     </h3>
 
     <p>
-        {{personaje.titulo}}
+        {{personaje.name}}
     </p>
 
 

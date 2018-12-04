@@ -30,15 +30,12 @@ export class RestProvider {
 
   public getPeliculas(): Observable<Product> {
     console.log('Entro a getPeli');
-    
+
     return this.httpClient
       .get(this.baseUrl + '/centrocultural/eventoshoy')
       .map((response:any) => {
-          console.log('response:',response);
-          
+
           for (const item of response) {
-            let item2 = item;
-            console.log('item2', item2.address_id[1]);
             this.peliculas.push(item);
           }
           return new Product(response);
@@ -159,11 +156,6 @@ interface algo {
  write_date: string;
  write_uid: []
 }
- 
- 
-
-
-
 
  /*
 {'__last_update': datetime.datetime(2018, 12, 2, 6, 2, 37, 719837),

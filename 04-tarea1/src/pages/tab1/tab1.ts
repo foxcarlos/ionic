@@ -50,7 +50,7 @@ export class Tab1Page {
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: 'Por favor espere...',
-      duration: 3000,
+      duration: 1500,
       dismissOnPageChange: true
     });
     loader.present();

@@ -2,7 +2,7 @@
     <ion-navbar color="dark">
         <img src="assets/imgs/CCC_vertical-01.png" width="40px" style="display:inline-block" height="40px" />
         <ion-title text-center style="display:inline-block; margin-bottom:10px;">
-            Centro Cultural Cotesma
+            Eventos para hoy
         </ion-title>
     </ion-navbar>
 </ion-header>
@@ -10,40 +10,42 @@
 <ion-content padding>
     <ion-list>
 
-        <button color="negro" ion-item *ngFor="let personaje of restProv.peliculas; let i = index" (click)="verPersonaje( personaje )">
-			<ion-thumbnail item-left>
-				<img [src]="personaje.url_imagen">
-			</ion-thumbnail>
-            <ion-grid no-padding>
-            <ion-row>
-              <ion-col col-12>
-                <h2>{{personaje.name}}</h2>
-              </ion-col>
-            </ion-row>
+        <button color="negro" ion-item detail-push *ngFor="let personaje of restProv.peliculas; let i = index" (click)="verPersonaje( personaje )">
 
-            <ion-row>
-              <ion-col col-12>
-                <p>{{personaje.clase}}</p>
-              </ion-col>
-            </ion-row>
+        <ion-thumbnail item-left>
+          <img [src]="personaje.url_imagen">
+        </ion-thumbnail>
+              <ion-grid no-padding>
+              <ion-row>
+                <ion-col col-12>
+                  <h2>{{personaje.name}}</h2>
+                </ion-col>
+              </ion-row>
 
-            <ion-row>
-              <ion-col>
-                <p color="white"> </p>
-                <br>
-              </ion-col>
-            </ion-row>
+              <ion-row>
+                <ion-col col-12>
+                  <p style="color:bisque">{{personaje.clase}}</p>
+                </ion-col>
+              </ion-row>
 
-            <ion-row>
-              <ion-col col-3>
-                <p color="dark">Sala:{{personaje.sala_id[1]}}</p>
-              </ion-col>
-              <ion-col col-3 offset-6>
-                <ion-note>{{personaje.date_begin_located.split(',')[2]}}</ion-note>
-              </ion-col>
-            </ion-row>
-            </ion-grid>
-		</button>
+              <ion-row>
+                <ion-col>
+                  <p color="white"> </p>
+                  <br>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-3>
+                  <p style="color: brown">Sala:{{personaje.sala_id[1]}}</p>
+                </ion-col>
+                <ion-col col-3 offset-6>
+
+                  <p style="color: brown">{{personaje.date_begin_located | date:'h:mm a'}}</p>
+                </ion-col>
+              </ion-row>
+              </ion-grid>
+		    </button>
 
     </ion-list>
 

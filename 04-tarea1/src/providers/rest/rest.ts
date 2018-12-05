@@ -73,8 +73,8 @@ interface ArchivoSubir{
 interface algo {
   __last_update: string;
  active: boolean;
- address_id: [];
- allowed_track_tag_ids:[];
+ address_id: any;
+ allowed_track_tag_ids: any;
  auto_confirm: boolean;
  badge_back: string;
  badge_front: string;
@@ -82,10 +82,10 @@ interface algo {
  badge_innerright: string;
  clase: string;
  color: string;
- company_id: [];
+ company_id: any;
  create_date: string;
- create_uid: [];
- date_begin: [];
+ create_uid: any;
+ date_begin: any;
  date_begin_located: string;
  date_end: string;
  date_end_located: string;
@@ -93,34 +93,34 @@ interface algo {
  description: string;
  display_name: string;
  event_logo: string;
- event_mail_ids: [];
- event_ticket_ids: [];
- event_type_id: [];
+ event_mail_ids: any;
+ event_ticket_ids: any;
+ event_type_id: any;
  id: number;
  idioma: string;
  is_online: boolean;
  is_participating: boolean;
  is_published: boolean;
  is_seo_optimized: boolean;
- lista_de_funciones: [];
- menu_id: [];
+ lista_de_funciones: any;
+ menu_id: any;
  message_attachment_count: number;
- message_channel_ids: [];
- message_follower_ids: [];
+ message_channel_ids: any;
+ message_follower_ids: any;
  message_has_error: boolean;
  message_has_error_counter: number;
- message_ids: [];
+ message_ids: any;
  message_is_follower: boolean;
- message_main_attachment_id: [];
+ message_main_attachment_id: any;
  message_needaction: boolean;
  message_needaction_counter: number;
- message_partner_ids: [];
+ message_partner_ids: any;
  message_unread: boolean;
  message_unread_counter: number;
  name: string;
- organizer_id: [];
- registration_ids: [];
- sala_id: [];
+ organizer_id: any;
+ registration_ids: any;
+ sala_id: any;
  seats_availability: string;
  seats_available: number;
  seats_expected: number;
@@ -130,21 +130,21 @@ interface algo {
  seats_unconfirmed: number;
  seats_used: number;
  sponsor_count: number;
- sponsor_ids: [];
+ sponsor_ids: any;
  state: string;
  titulo_original: string;
  track_count: number;
- track_ids: [];
- track_menu_ids: [];
- track_proposal_menu_ids: [];
- tracks_tag_ids: [];
+ track_ids: any;
+ track_menu_ids: any;
+ track_proposal_menu_ids: any;
+ tracks_tag_ids: any;
  twitter_hashtag: string;
  url_imagen: string;
  url_trailer: string;
- user_id: [];
- website_id: [];
- website_menu: [];
- website_message_ids: [];
+ user_id: any;
+ website_id: any;
+ website_menu: any;
+ website_message_ids: any;
  website_meta_description: string;
  website_meta_keywords: string;
  website_meta_og_img: string;
@@ -154,7 +154,7 @@ interface algo {
  website_track_proposal: string;
  website_url: string;
  write_date: string;
- write_uid: []
+ write_uid: any
 }
 
  /*

@@ -9,10 +9,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  // baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  //baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
   baseUrl:string = 'http://localhost:8069'
 
-  // peliculas: ArchivoSubir[] = [];
   peliculas: algo[] = [];
 
   constructor(private httpClient: HttpClient) {
@@ -30,7 +29,8 @@ export class RestProvider {
 
   public getPeliculas(): Observable<Product> {
     console.log('Entro a getPeli');
-
+    
+    this.peliculas.splice(0);
     return this.httpClient
       .get(this.baseUrl + '/centrocultural/eventoshoy')
       .map((response:any) => {

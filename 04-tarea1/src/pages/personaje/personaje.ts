@@ -18,15 +18,12 @@ export class PersonajePage {
                 private domSanitizer: DomSanitizer) {
 
     this.personaje = this.navParams.get('personaje');
-    console.log(this.personaje);
-    //this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
-
   }
 
   ionViewWillEnter(): void {
     this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: 'Por favor espere...'
     });
 
     this.loading.present();

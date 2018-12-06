@@ -1,19 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-/**
- * Generated class for the MostrarListaFuncionesPipe pipe.
- *
- * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
- */
+
 @Pipe({
   name: 'mostrarListaFunciones',
 })
 export class MostrarListaFuncionesPipe implements PipeTransform {
-  /**
-   * Takes a value and makes it lowercase.
-   */
-  transform(value: string) {
+
+  transform(value: any) {
+    let valor = value
+    valor = value.replace(/hs./g, "").replace(/'/g, '"');
+    valor = JSON.parse(valor);
     
-    return value.toLowerCase();
+    return valor;
   }
 }

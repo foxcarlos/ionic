@@ -8,10 +8,12 @@
 </ion-header>
 
 <ion-content padding>
+
     <ion-refresher (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Abajo para refrescar" refreshingSpinner="circles" refreshingText="Refrescando...">
         </ion-refresher-content>
     </ion-refresher>
+
     <ion-list>
 
         <button color="negro" ion-item detail-push *ngFor="let personaje of restProv.peliculas; let i = index" (click)="verPersonaje( personaje )">

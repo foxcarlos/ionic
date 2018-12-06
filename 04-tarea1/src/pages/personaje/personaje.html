@@ -34,14 +34,14 @@
                 <img [src]="personaje.url_imagen">
             </ion-avatar>
             <h2>Funciones:</h2>
-            <p>{{personaje.lista_de_funciones}}</p>
+            <p>{{personaje.lista_de_funciones | mostrarListaFunciones}} </p>
         </ion-item>
 
         <iframe width="100%" height="200" [src]="trustedVideoUrl ? trustedVideoUrl : null" (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null" frameborder="0" allowfullscreen>
             </iframe>
 
         <ion-card-content text-left>
-            <p class="card-subtitle" text-wrap>{{personaje.description}}</p>
+            <p class="card-subtitle" text-wrap>{{personaje.description | mostrarDescripcion}}</p>
         </ion-card-content>
 
         <ion-row>

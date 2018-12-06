@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { Refresher, reorderArray } from "ionic-angular";
-
-
-
 import {PersonajePage} from '../index.paginas';
 
 // Provider
@@ -15,26 +12,27 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 
 export class Tab1Page {
-  //personajes:any = PERSONAJES;
+
   personajePage: any = PersonajePage;
 
   constructor(public navCtrl: NavController,
               public restProv: RestProvider,
               public loadingCtrl: LoadingController) {
 
-      // this.personajes = PERSONAJES.slice(0);
+
       this.presentLoading();
       console.log( 'Lo que tiene peliculas desde el constructor', restProv.peliculas );
-      
-  }
 
+  }
+  // res.json().results
   doRefresh(refresher) {
     this.restProv.getPeliculas()
     .subscribe( (response)=>{
       refresher.complete();
     },
     (err) =>{
-      console.log('Ocurrio un Error:', err);
+      console.log('Error al intentar hacer refresh:', err);
+      refresher.cancel();
     });
 
   }
@@ -43,19 +41,6 @@ export class Tab1Page {
     console.log('verPersonaje:', personaje);
     this.navCtrl.push(PersonajePage, { personaje });
   }
-
-  /*
-  verPersonaje( personaje:any ){
-    this.restProv.getPeliculas()
-      .subscribe( (response)=>{
-        console.log('Personajes', response);
-      },
-      (err) =>{
-        console.log('Ocurrio un Error:', err);
-      }
-    );
-  }
-  */
 
   presentLoading() {
     const loader = this.loadingCtrl.create({

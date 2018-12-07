@@ -45,7 +45,7 @@ export class Tab1Page {
   presentLoading() {
     const loader = this.loadingCtrl.create({
       content: 'Por favor espere...',
-      duration: 1500,
+      duration: 1000,
       dismissOnPageChange: true
     });
     loader.present();

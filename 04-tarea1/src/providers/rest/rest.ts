@@ -18,14 +18,14 @@ export class RestProvider {
   constructor(private httpClient: HttpClient) {
     console.log('Hello RestProvider Provider');
 
-    this.getPeliculas()
+    /*this.getPeliculas()
       .subscribe( (response)=>{
         console.log('Personajes', response);
       },
       (err) =>{
         console.log('Ocurrio un Error:', err);
       }
-    );
+    );*/
   }
 
   public getPeliculas(): Observable<Product> {
@@ -56,7 +56,7 @@ export class RestProvider {
 
     this.peliculas.splice(0);
     return this.httpClient
-      .get(this.baseUrl + '/centrocultural/peliculas')
+      .get(this.baseUrl + '/centrocultural/eventos/cine')
       .map((response:any) => {
 
           for (const item of response) {

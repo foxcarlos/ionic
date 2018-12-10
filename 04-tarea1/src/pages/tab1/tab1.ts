@@ -22,10 +22,25 @@ export class Tab1Page {
 
 
       this.presentLoading();
+      //this.getEventosHoy()
       console.log( 'Lo que tiene peliculas desde el constructor', restProv.peliculas );
 
   }
-  // res.json().results
+
+  ionViewWillEnter(){
+    this.getEventosHoy();
+  }
+
+  getEventosHoy(){
+    this.restProv.getPeliculas()
+    .subscribe( (response)=>{
+      console.log('salio bien get eventos hoy');
+    },
+    (err) =>{
+      console.log('Error al intentar hacer refresh:', err);
+    });
+  }
+  
   doRefresh(refresher) {
     this.restProv.getPeliculas()
     .subscribe( (response)=>{

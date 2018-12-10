@@ -22,24 +22,28 @@ export class Tab2Page {
 
 
       this.presentLoading();
-      this.getCines();
+      // this.getCines();
       console.log( 'Lo que tiene cine desde el constructor', restProv.peliculas );
 
+  }
+
+  ionViewWillEnter(){
+    this.getCines();
   }
 
   getCines(){
     this.restProv.getCines()
     .subscribe( (response)=>{
-      // refresher.complete();
       console.log('salio bien get cines');
     },
     (err) =>{
       console.log('Error al intentar hacer refresh:', err);
-      // refresher.cancel();
     });
   }
 
   doRefresh(refresher) {
+    console.log('DoRefresh invodado desde tab2.ts');
+    
     this.restProv.getCines()
     .subscribe( (response)=>{
       refresher.complete();

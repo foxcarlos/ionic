@@ -9,10 +9,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
-  //baseUrl:string = 'http://localhost:8069'
+  //baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  baseUrl:string = 'http://localhost:8069'
 
   peliculas: algo[] = [];
+  cines: algo[] = [];
 
   constructor(private httpClient: HttpClient) {
     console.log('Hello RestProvider Provider');
@@ -29,19 +30,49 @@ export class RestProvider {
 
   public getPeliculas(): Observable<Product> {
     console.log('Entro a getPeli');
-    
+
     this.peliculas.splice(0);
     return this.httpClient
       .get(this.baseUrl + '/centrocultural/eventoshoy')
       .map((response:any) => {
 
           for (const item of response) {
+            if(!item.url_imagen){
+                item.url_imagen = '../../assets/imgs/noimage.png';
+            }
+            if(!item.url_trailer){
+                item.url_trailer = '../../assets/imgs/noimage.png';
+            }
+
             this.peliculas.push(item);
+
           }
           return new Product(response);
       })
   }
 
+  public getCines(): Observable<Product> {
+    console.log('Entro a getCine');
+
+    this.peliculas.splice(0);
+    return this.httpClient
+      .get(this.baseUrl + '/centrocultural/peliculas')
+      .map((response:any) => {
+
+          for (const item of response) {
+            if(!item.url_imagen){
+                item.url_imagen = '../../assets/imgs/noimage.png';
+            }
+            if(!item.url_trailer){
+                item.url_trailer = '../../assets/imgs/noimage.png';
+            }
+
+            this.peliculas.push(item);
+
+          }
+          return new Product(response);
+      })
+  }
 }
 
 export class Product {
@@ -55,20 +86,6 @@ export class Product {
   }
 }
 
-interface ArchivoSubir{
-    categoria: string,
-    clase: string,
-    fecha_hoy: string,
-    horario_hoy: string,
-    idioma: string,
-    [lista_de_funciones: string]: any;
-    resumen: string,
-    sala_hoy: string,
-    titulo_original: string,
-    trailer: string,
-    titulo: string,
-    url_imagen: string,
-}
 
 interface algo {
   __last_update: string;

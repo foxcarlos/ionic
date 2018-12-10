@@ -10,6 +10,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MostrarAtpPipe implements PipeTransform {
   transform(value: string) {
-    return value.split(' ').slice(-4,).join(' ');
+    if(value){
+      console.log('lo que tiene pipe atp', value)
+      return value.split(' ').slice(-4,).join(' ');
+    }else{
+      return 'Todo Publico'
+    }
   }
 }

@@ -7,8 +7,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MostrarDescripcionPipe implements PipeTransform {
 
   transform(value: string) {
-    let valor = value;
-    valor = value.replace("<p>", '').replace("</p>", '');
-    return valor;
+    if(value){
+        let valor = value;
+        valor = value.replace("<p>", '').replace("</p>", '');
+        return valor;
+    }else{
+      return 'No existe ninguna descripcion para este evento';
+    }
   }
 }

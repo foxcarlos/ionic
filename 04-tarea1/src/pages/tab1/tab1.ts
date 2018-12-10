@@ -14,6 +14,7 @@ import { RestProvider } from '../../providers/rest/rest';
 export class Tab1Page {
 
   personajePage: any = PersonajePage;
+  titulo_head: string = 'Eventos para hoy';
 
   constructor(public navCtrl: NavController,
               public restProv: RestProvider,

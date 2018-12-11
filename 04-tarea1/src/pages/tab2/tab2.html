@@ -16,7 +16,7 @@
 
     <ion-list>
 
-        <button color="negro" ion-item detail-push *ngFor="let pelicula of restProv.peliculas; let i = index" (click)="verPersonaje( pelicula )">
+        <button color="negro" ion-item detail-push *ngFor="let pelicula of restProv.cines; let i = index" (click)="verPersonaje( pelicula )">
 
         <ion-thumbnail item-left>
           <img [src]="pelicula.url_imagen">
@@ -42,25 +42,29 @@
               </ion-row>
 
               <ion-row>
-                <ion-col col-5 align-self-start>
+                <!--
+                <ion-col col-xs-auto>
                   <div>
                   <p style="color: brown">Sala:{{pelicula.sala_id[1]}}</p>
-                  </div>
+                  <p style="color: brown">{{ pelicula.date_begin | date:'MMM d h:mm a' | uppercase}}</p>
+                  </div>          
                 </ion-col>
+                -->
+              
+                <div>
+                    <div class="update-nag">
+                      <div class="update-split update-danger">Sala: Auditorio<i class="glyphicon glyphicon-warning-sign"></i></div>
+                      <div class="update-text"> 10:00 pm</div>
+                    </div>
+                </div>
 
-                <ion-col col-4 align-self-end>
-                  <div>
-                  <p style="color: brown">{{pelicula.date_begin_located | date:'h:mm a'}}</p>
+                  
+                <!--
+                <ion-col col-auto align-items-end>
+                  <div> 
+                    col-12 col-sx align-items-center <p style="color: brown">{{ pelicula.date_begin | date:'MMM d h:mm a' | uppercase}}</p> 
                   </div>
-                </ion-col>
-
-                <!--<ion-col col-3 offset-6>-->
-
-                <ion-col col-3 align-self-end>
-                  <div>
-                  <p style="color: brown">{{pelicula.event_type_id[1]}}</p>
-                  </div>
-                </ion-col>
+                </ion-col>-->
 
               </ion-row>
               </ion-grid>

@@ -1,14 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { LoadingController } from 'ionic-angular';
 
+
+// Fecha en Español
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
+
+
 // Pipes
 import { PipesModule } from '../pipes/pipes.module';
-import { MostrarAtpPipe } from '../pipes/mostrar-atp/mostrar-atp';
-import { MostrarListaFuncionesPipe } from '../pipes/mostrar-lista-funciones/mostrar-lista-funciones';
 
 import { HTTP } from '@ionic-native/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -53,6 +58,7 @@ import { RestProvider } from '../providers/rest/rest';
     LoadingController,
     HTTP,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: LOCALE_ID, useValue: 'es' },
     RestProvider
   ]
 })

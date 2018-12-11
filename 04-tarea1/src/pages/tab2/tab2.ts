@@ -8,7 +8,7 @@ import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
   selector: 'page-tab2',
-  templateUrl: '../tab1/tab1.html'
+  templateUrl: 'tab2.html', //'../tab1/tab1.html'
 })
 
 export class Tab2Page {
@@ -21,9 +21,9 @@ export class Tab2Page {
               public loadingCtrl: LoadingController) {
 
 
-      //this.presentLoading();
-      // this.getCines();
-      console.log( 'Lo que tiene cine desde el constructor', restProv.peliculas );
+      this.presentLoading();
+      this.getCines();
+      console.log( 'Lo que tiene tab2 desde el constructor', restProv.cines );
 
   }
 

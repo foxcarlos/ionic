@@ -22,14 +22,14 @@ export class Tab1Page {
 
 
       this.presentLoading();
-      //this.getEventosHoy()
+      this.getEventosHoy()
       console.log( 'Lo que tiene peliculas desde el constructor', restProv.peliculas );
 
   }
 
-  ionViewWillEnter(){
+  /* ionViewWillEnter(){
     this.getEventosHoy();
-  }
+  } */
 
   getEventosHoy(){
     this.restProv.getPeliculas()
@@ -41,6 +41,11 @@ export class Tab1Page {
     });
   }
   
+  verPersonaje( personaje:any ){
+    console.log('verPersonaje:', personaje);
+    this.navCtrl.push(PersonajePage, { personaje });
+  }
+
   doRefresh(refresher) {
     this.restProv.getPeliculas()
     .subscribe( (response)=>{
@@ -50,12 +55,6 @@ export class Tab1Page {
       console.log('Error al intentar hacer refresh:', err);
       refresher.cancel();
     });
-
-  }
-  
-  verPersonaje( personaje:any ){
-    console.log('verPersonaje:', personaje);
-    this.navCtrl.push(PersonajePage, { personaje });
   }
 
   presentLoading() {

@@ -14,7 +14,7 @@ import { HTTP } from '@ionic-native/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
-import { TabsPage, Tab1Page, Tab2Page, Tab3Page, PersonajePage } from '../pages/index.paginas';
+import { TabsPage, Tab1Page, Tab2Page, Tab3Page, PersonajePage, TallerPage } from '../pages/index.paginas';
 import { RestProvider } from '../providers/rest/rest';
 
 
@@ -27,6 +27,7 @@ import { RestProvider } from '../providers/rest/rest';
     Tab2Page,
     Tab3Page,
     PersonajePage,
+    TallerPage,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +45,7 @@ import { RestProvider } from '../providers/rest/rest';
     Tab2Page,
     Tab3Page,
     PersonajePage,
+    TallerPage,
   ],
   providers: [
     StatusBar,

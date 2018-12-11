@@ -21,15 +21,15 @@ export class Tab2Page {
               public loadingCtrl: LoadingController) {
 
 
-      this.presentLoading();
+      //this.presentLoading();
       // this.getCines();
       console.log( 'Lo que tiene cine desde el constructor', restProv.peliculas );
 
   }
 
-  ionViewWillEnter(){
+  /* ionViewWillEnter(){
     this.getCines();
-  }
+  } */
 
   getCines(){
     this.restProv.getCines()

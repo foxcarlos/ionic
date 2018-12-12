@@ -18,10 +18,10 @@
 
         <button color="negro" ion-item detail-push *ngFor="let pelicula of restProv.cines; let i = index" (click)="verPersonaje( pelicula )">
 
-        <ion-thumbnail item-left>
-          <img [src]="pelicula.url_imagen">
-        </ion-thumbnail>
-              <ion-grid no-padding>
+          <ion-thumbnail item-left>
+            <img [src]="pelicula.url_imagen">
+          </ion-thumbnail>
+          <ion-grid no-padding>
               <ion-row>
                 <ion-col col-12>
                   <h2>{{pelicula.name}}</h2>
@@ -41,36 +41,22 @@
                 </ion-col>
               </ion-row>
 
-              <ion-row>
-                <!--
-                <ion-col col-xs-auto>
-                  <div>
-                  <p style="color: brown">Sala:{{pelicula.sala_id[1]}}</p>
-                  <p style="color: brown">{{ pelicula.date_begin | date:'MMM d h:mm a' | uppercase}}</p>
-                  </div>          
-                </ion-col>
-                -->
-              
-                <div>
-                    <div class="update-nag">
-                      <div class="update-split update-danger">Sala: Auditorio<i class="glyphicon glyphicon-warning-sign"></i></div>
-                      <div class="update-text"> 10:00 pm</div>
-                    </div>
-                </div>
-
-                
-
-                  
-                <!--
+              <!-- <ion-row>
                 <ion-col col-auto align-items-end>
-                  <div> 
-                    col-12 col-sx align-items-center <p style="color: brown">{{ pelicula.date_begin | date:'MMM d h:mm a' | uppercase}}</p> 
-                  </div>
-                </ion-col>-->
+                    <p class="rectangulo">Sala:{{pelicula.sala_id[1]}}</p><span class="rectangulo2">{{ pelicula.date_begin | date:'MMM d h:mm a' | uppercase}}</span>
+                </ion-col>
+              </ion-row> -->
 
+              <ion-row>
+                <div class="panel panel-default panel-horizontal">      
+                  <div class="panel-body">Sala:{{pelicula.sala_id[1]}} </div>
+                  <div class="panel-footer">{{ pelicula.date_begin | date:'MMM d h:mm a' | uppercase}}</div>
+                </div>
               </ion-row>
-              </ion-grid>
-		    </button>
+              
+
+            </ion-grid>
+        </button>
 
     </ion-list>
 

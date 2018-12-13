@@ -12,10 +12,14 @@ export class MostrarSalaFechaPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value1: string, value2: string) {
-    //`Sala:$( value1) `
-    console.log(value2);
+  transform(value: string, params:any) {
     
-    //return value1.toLowerCase();
+    console.log(value, params);
+    
+    if (!value) {
+      value = params;
+    }
+    
+    return value;
   }
 }

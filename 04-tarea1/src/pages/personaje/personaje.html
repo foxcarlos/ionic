@@ -35,12 +35,25 @@
 
         <ion-row>
 
+
             <ion-col center text-left>
+                <!--
                 <ion-badge color="--app" item-end>Sala: {{personaje.sala_id[1]}}</ion-badge>
+                -->
+                <ion-chip color="--app">
+                    <ion-label>{{personaje.sala_id[1] | mostrarSalaFecha: personaje.address_id[1] }}</ion-label>
+                </ion-chip>
+
             </ion-col>
 
             <ion-col center text-right>
+                <!--
                 <ion-badge color="--app" item-end>{{personaje.clase | mostrarAtp}}</ion-badge>
+                -->
+                <ion-chip color="--app">
+                    <ion-label>{{personaje.clase | mostrarAtp}}</ion-label>
+                </ion-chip>
+
             </ion-col>
 
         </ion-row>

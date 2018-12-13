@@ -20,10 +20,10 @@ page-tab2 {
         vertical-align: middle;
     }
     .panel.panel-horizontal>.panel-footer {
-        border-left: 1px solid #ea2d24;
+        border-left: 1px solid var(--app);
         border-top-left-radius: 0;
         border-bottom-right-radius: 4px;
-        background-color: #ea2d24!important;
+        background-color: var(--app)!important;
         color: #ffff;
         font-size: x-small;
     }

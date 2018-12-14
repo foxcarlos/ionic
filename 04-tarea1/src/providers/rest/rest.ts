@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
-  // baseUrl:string = 'http://localhost:8069'
+  // baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  baseUrl:string = 'http://localhost:8069'
 
   peliculas: algo[] = [];
   cines: algo[] = [];

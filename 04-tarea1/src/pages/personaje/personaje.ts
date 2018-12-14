@@ -22,33 +22,27 @@ export class PersonajePage {
     this.personaje = this.navParams.get('personaje');
   }
 
-  presentActionSheet() {
-    const actionSheet = this.actionSheetCtrl.create({
-      title: 'Horarios',
-      buttons: [
-        {
-          text: '2018-12-13 18:00',
-          handler: () => {
-            console.log('Destructive clicked');
-          }
-        },{
-          text: '2018-12-14 18:00',
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        },{
-          text: '2018-12-15 18:00',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },{
-          text: 'Cerrar',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
+  private _crear_horarios(){
+    let lista_horarios = ['2018-12-14 18:00', '2018-12-15 18:00', '2018-12-16 18:00'];
+    let horarios: any = []
+    for (const horario of lista_horarios) {
+      let item = {
+        text: horario,
+        cssClass: 'myActionSheetBtnStyle',
+        handler: () => {
+          console.log('click en:', horario);
         }
-      ]
+      };
+      horarios.push(item);
+    }
+    return horarios
+  }
+
+  presentActionSheet() {  
+    const actionSheet = this.actionSheetCtrl.create({
+      //title: '<p> lista_horarios </p>',
+      cssClass: 'myPage',
+      buttons: this._crear_horarios()
     });
     actionSheet.present();
   }

@@ -9,23 +9,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  // baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
-  baseUrl:string = 'http://localhost:8069'
+  baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  // baseUrl:string = 'http://localhost:8069'
 
   peliculas: algo[] = [];
   cines: algo[] = [];
+  horario: algo[] = [];
 
   constructor(private httpClient: HttpClient) {
     console.log('Hello RestProvider Provider');
-
-    /*this.getPeliculas()
-      .subscribe( (response)=>{
-        console.log('Personajes', response);
-      },
-      (err) =>{
-        console.log('Ocurrio un Error:', err);
-      }
-    );*/
   }
 
   public getPeliculas(): Observable<Product> {
@@ -73,7 +65,23 @@ export class RestProvider {
           return new Product(response);
       })
   }
+
+  public getHorario(eventoName){
+    console.log('Entro a getHorario');
+
+    this.horario.splice(0);
+    return this.httpClient
+      .get(this.baseUrl + '/centrocultural/eventos/horarios/'+eventoName)
+      .map((response:any) => {
+        
+        return response;
+      })
+  }
+
+  
 }
+
+
 
 export class Product {
   id: number;

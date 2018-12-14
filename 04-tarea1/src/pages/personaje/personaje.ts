@@ -3,6 +3,7 @@ import { Loading, LoadingController, NavController, NavParams } from 'ionic-angu
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 import { ActionSheetController } from 'ionic-angular';
+import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
   selector: 'page-personaje',
@@ -17,17 +18,74 @@ export class PersonajePage {
                 public navParams: NavParams,
                 public loadingCtrl: LoadingController,
                 private domSanitizer: DomSanitizer,
-                public actionSheetCtrl: ActionSheetController) {
+                public actionSheetCtrl: ActionSheetController,
+                public restProv: RestProvider) {
 
     this.personaje = this.navParams.get('personaje');
   }
 
-  private _crear_horarios(){
-    let lista_horarios = ['2018-12-14 18:00', '2018-12-15 18:00', '2018-12-16 18:00'];
+  get_horarios(){
+    this.restProv.getHorario(this.personaje.name)
+      .subscribe( (response)=>{
+        console.log('salio bien getHorario', response);
+        this.presentActionSheet(this.armar_horarios(response));
+      },
+      (err) =>{
+        console.log('Error al intentar obterner e horario:', err);
+      });
+    
+  }
+
+  parse_fecha(fecha: string){
+    var d = new Date(fecha);
+    var weekday = new Array(7);
+    var monthday = new Array(12);
+
+    monthday[1] =  "Enero";
+    monthday[2] =  "Febrero";
+    monthday[3] =  "Marzo";
+    monthday[4] =  "Abril";
+    monthday[5] =  "Mayo";
+    monthday[6] =  "Junio";
+    monthday[7] =  "Julio";
+    monthday[8] =  "Agosto";
+    monthday[9] =  "Septiembre";
+    monthday[10] =  "Octubre";
+    monthday[11] =  "Noviembre";
+    monthday[12] =  "Diciembre";
+
+    weekday[0] =  "Domingo";
+    weekday[1] = "Lunes";
+    weekday[2] = "Martes";
+    weekday[3] = "Miercoles";
+    weekday[4] = "Jueves";
+    weekday[5] = "Viernes";
+    weekday[6] = "Sabado";
+
+    let dia_semana = weekday[d.getDay()];
+    let dia = d.getDate();
+    let mes = monthday[d.getMonth()];
+    let anio = d.getFullYear();
+    let hora = d.getHours();
+    let minutos:any = d.getMinutes();
+    if(minutos.toString.length<2){
+      minutos = `${minutos}0`
+    }
+    
+
+    /* "2018-12-09 20:00:00"
+    "Jue 12 de Dic 20:00" */
+    console.log(d.toDateString());
+     
+    return `${dia_semana.slice(0,3)} ${dia} de ${mes.slice(0,3)} ${hora}:${minutos}`
+  }
+
+  armar_horarios(lista_horarios){
     let horarios: any = []
     for (const horario of lista_horarios) {
       let item = {
-        text: horario,
+        text: this.parse_fecha(horario),
+        icon:"time",
         cssClass: 'myActionSheetBtnStyle',
         handler: () => {
           console.log('click en:', horario);
@@ -35,14 +93,25 @@ export class PersonajePage {
       };
       horarios.push(item);
     }
+
+    let ultima_opcion = {
+      text: 'Atras',
+      icon:"arrow-round-back",
+      //cssClass: 'myActionSheetBtnStyle',
+      role: 'cancel',
+      handler: () => {
+        console.log('Cancel clicked');
+      }
+    }
+    horarios.push(ultima_opcion);
     return horarios
   }
-
-  presentActionSheet() {  
+ 
+  presentActionSheet(lista) {
     const actionSheet = this.actionSheetCtrl.create({
-      //title: '<p> lista_horarios </p>',
+      //title: 'Horarios',
       cssClass: 'myPage',
-      buttons: this._crear_horarios()
+      buttons: lista
     });
     actionSheet.present();
   }

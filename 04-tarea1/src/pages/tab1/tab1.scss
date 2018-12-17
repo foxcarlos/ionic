@@ -15,7 +15,7 @@ page-tab1 {
     }
     .panel.panel-horizontal>.panel-heading,
     .panel.panel-horizontal>.panel-footer {
-        width: 25%;
+        width: 35%;
         border: 0;
         vertical-align: middle;
     }
@@ -26,5 +26,12 @@ page-tab1 {
         background-color: var(--app)!important;
         color: #ffff;
         font-size: x-small;
+    }
+    p.description {
+        white-space: nowrap;
+        width: 200px;
+        border: 1px solid #000000;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }

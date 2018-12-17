@@ -75,54 +75,26 @@ export class PersonajePage {
     
     if(minutos==0){
       minutos = `${minutos}0`
-    }
-    
+    }    
 
     /* "2018-12-09 20:00:00"
     "Jue 12 de Dic 20:00" */
     console.log(d.toDateString());
-     
     return `${dia_semana.slice(0,3)} ${dia} de ${mes.slice(0,3)} ${hora}:${minutos}`
   }
 
   armar_horarios(lista_horarios){
-    let horarios: any = []
+    let fecha_hoy = new Date();
+
     for (const horario of lista_horarios) {
-      this.horarios_global.push(this.parse_fecha(horario));
-
-      let item = {
-        text: this.parse_fecha(horario),
-        icon:"time",
-        cssClass: 'myActionSheetBtnStyle',
-        handler: () => {
-          console.log('click en:', horario);
-        }
-      };
-      horarios.push(item);
-    }
-
-    let ultima_opcion = {
-      text: 'Atras',
-      icon:"arrow-round-back",
-      //cssClass: 'myActionSheetBtnStyle',
-      role: 'cancel',
-      handler: () => {
-        console.log('Cancel clicked');
+      let fecha_evento = new Date(horario);
+      
+      if( fecha_evento >= fecha_hoy){
+        this.horarios_global.push(this.parse_fecha(horario));
       }
     }
-    horarios.push(ultima_opcion);
-    return horarios
   }
  
-  presentActionSheet(lista) {
-    const actionSheet = this.actionSheetCtrl.create({
-      //title: 'Horarios',
-      cssClass: 'myPage',
-      buttons: lista
-    });
-    actionSheet.present();
-  }
-
   ionViewWillEnter(): void {
     this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
     this.loading = this.loadingCtrl.create({

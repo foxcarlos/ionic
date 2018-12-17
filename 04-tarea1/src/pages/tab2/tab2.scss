@@ -27,4 +27,11 @@ page-tab2 {
         color: #ffff;
         font-size: x-small;
     }
+    p.test2 {
+        white-space: nowrap;
+        width: 250px;
+        border: 1px solid #000000;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

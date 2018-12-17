@@ -16,7 +16,7 @@
 
     <ion-list>
 
-        <button color="negro" ion-item detail-push *ngFor="let evento of restProv.peliculas; let i = index" (click)="verevento( evento )">
+        <button color="negro" ion-item detail-push *ngFor="let evento of restProv.peliculas; let i = index" (click)="verEvento( evento )">
 
         <ion-thumbnail item-left>
           <img [src]="evento.url_imagen">
@@ -43,7 +43,7 @@
 
               <ion-row>
                   <div class="panel panel-default panel-horizontal">      
-                    <div class="panel-body">Sala:{{evento.sala_id[1]}} </div>
+                    <div class="panel-body"> {{evento.sala_id[1] | mostrarSalaFecha: evento.address_id[1] }} </div>
                     <div class="panel-footer">{{ evento.date_begin | date:'MMM d h:mm a' | uppercase}}</div>
                   </div>
                 </ion-row>

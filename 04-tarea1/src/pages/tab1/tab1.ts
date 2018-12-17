@@ -41,7 +41,7 @@ export class Tab1Page {
     });
   }
   
-  verPersonaje( personaje:any ){
+  verEvento( personaje:any ){
     console.log('verPersonaje:', personaje);
     this.navCtrl.push(PersonajePage, { personaje });
   }

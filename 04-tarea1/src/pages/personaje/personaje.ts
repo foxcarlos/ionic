@@ -13,6 +13,7 @@ export class PersonajePage {
   personaje: any = {};
   trustedVideoUrl: SafeResourceUrl;
   loading: Loading;
+  horarios_global: any = [];
 
   constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -22,13 +23,15 @@ export class PersonajePage {
                 public restProv: RestProvider) {
 
     this.personaje = this.navParams.get('personaje');
+    this.get_horarios();
   }
 
   get_horarios(){
     this.restProv.getHorario(this.personaje.name)
       .subscribe( (response)=>{
         console.log('salio bien getHorario', response);
-        this.presentActionSheet(this.armar_horarios(response));
+        //this.presentActionSheet(this.armar_horarios(response));
+        this.armar_horarios(response);
       },
       (err) =>{
         console.log('Error al intentar obterner e horario:', err);
@@ -68,7 +71,9 @@ export class PersonajePage {
     let anio = d.getFullYear();
     let hora = d.getHours();
     let minutos:any = d.getMinutes();
-    if(minutos.toString.length<2){
+    console.log(minutos);
+    
+    if(minutos==0){
       minutos = `${minutos}0`
     }
     
@@ -83,6 +88,8 @@ export class PersonajePage {
   armar_horarios(lista_horarios){
     let horarios: any = []
     for (const horario of lista_horarios) {
+      this.horarios_global.push(this.parse_fecha(horario));
+
       let item = {
         text: this.parse_fecha(horario),
         icon:"time",

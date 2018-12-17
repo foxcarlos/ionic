@@ -10,19 +10,11 @@
     <ion-card color="dark">
 
         <!--
-        <ion-item color="dark">
-            <ion-avatar item-start>
-                <img [src]="personaje.url_imagen">
-            </ion-avatar>
-            <h2>Funciones:</h2>
-            <p>{{personaje.lista_de_funciones | mostrarListaFunciones}} </p>
-        </ion-item>
-        -->
-
         <button (click)="get_horarios()" ion-button icon-end block color="--app">
             Ver funciones
             <ion-icon name="arrow-forward"></ion-icon>
         </button>
+        -->
 
         <div class="iframe-16-9">
             <iframe [src]="trustedVideoUrl ? trustedVideoUrl : null" (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
@@ -37,26 +29,60 @@
 
 
             <ion-col center text-left>
+
+                <ion-badge color="--app" item-end>
+                    {{personaje.sala_id[1] | mostrarSalaFecha: personaje.address_id[1] }}
+                </ion-badge>
+
                 <!--
-                <ion-badge color="--app" item-end>Sala: {{personaje.sala_id[1]}}</ion-badge>
-                -->
                 <ion-chip color="--app">
                     <ion-label>{{personaje.sala_id[1] | mostrarSalaFecha: personaje.address_id[1] }}</ion-label>
                 </ion-chip>
+                -->
 
             </ion-col>
 
             <ion-col center text-right>
+
+                <ion-badge color="--app" item-end>
+                    {{personaje.clase | mostrarAtp}}
+                </ion-badge>
+
                 <!--
-                <ion-badge color="--app" item-end>{{personaje.clase | mostrarAtp}}</ion-badge>
-                -->
                 <ion-chip color="--app">
                     <ion-label>{{personaje.clase | mostrarAtp}}</ion-label>
                 </ion-chip>
+                -->
 
             </ion-col>
 
         </ion-row>
-
     </ion-card>
+    <div>
+
+    </div>
+    <br>
+
+    <div>
+        <button ion-button block small color="--app">
+                Funciones                        
+            </button>
+        <ion-card color="dark">
+            <ion-list>
+                <button color="dark" item-start *ngFor="let item of horarios_global" ion-item>
+                    <ion-icon name="time" item-start></ion-icon>
+                    
+                    <ion-note item-start>
+                        {{item}}
+                    </ion-note>
+                    
+                </button>
+            </ion-list>
+
+        </ion-card>
+    </div>
+
+
+
+
 </ion-content>

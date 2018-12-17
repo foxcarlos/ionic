@@ -16,7 +16,7 @@
 
     <ion-list>
 
-        <button color="negro" ion-item detail-push *ngFor="let evento of restProv.cines; let i = index" (click)="verPersonaje( evento )">
+        <button color="negro" ion-item detail-push *ngFor="let evento of restProv.cines; let i = index" (click)="verEvento( evento )">
 
           <ion-thumbnail item-left>
             <img [src]="evento.url_imagen">

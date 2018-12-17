@@ -55,8 +55,8 @@ export class Tab2Page {
 
   }
 
-  verPersonaje( personaje:any ){
-    console.log('verPersonaje:', personaje);
+  verEvento( personaje:any ){
+    console.log('verEvento:', personaje);
     this.navCtrl.push(PersonajePage, { personaje });
   }
 

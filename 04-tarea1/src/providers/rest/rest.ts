@@ -127,6 +127,7 @@ interface algo {
  event_type_id: any;
  id: number;
  idioma: string;
+ imagen: string;
  is_online: boolean;
  is_participating: boolean;
  is_published: boolean;

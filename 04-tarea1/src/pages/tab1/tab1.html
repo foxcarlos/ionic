@@ -19,7 +19,7 @@
         <button color="negro" ion-item detail-push *ngFor="let evento of restProv.peliculas; let i = index" (click)="verEvento( evento )">
 
         <ion-thumbnail item-left>
-          <img [src]="evento.url_imagen">
+          <img [src]= 'evento.url_imagen'>
         </ion-thumbnail>
               <ion-grid no-padding>
               <ion-row>

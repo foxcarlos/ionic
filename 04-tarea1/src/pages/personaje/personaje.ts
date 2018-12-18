@@ -14,8 +14,9 @@ export class PersonajePage {
   trustedVideoUrl: SafeResourceUrl;
   loading: Loading;
   horarios_global: any = [];
-
+  
   constructor(public navCtrl: NavController,
+
                 public navParams: NavParams,
                 public loadingCtrl: LoadingController,
                 private domSanitizer: DomSanitizer,
@@ -96,6 +97,8 @@ export class PersonajePage {
   }
  
   ionViewWillEnter(): void {
+    console.log(this.personaje.url_trailer);
+    
     this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
     this.loading = this.loadingCtrl.create({
       content: 'Por favor espere...'

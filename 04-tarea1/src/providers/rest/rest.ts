@@ -23,23 +23,33 @@ export class RestProvider {
   public getPeliculas(): Observable<Product> {
     console.log('Entro a getPeli');
 
+    let no_image = '../../assets/imgs/noimage.png';
+
     this.peliculas.splice(0);
     return this.httpClient
       .get(this.baseUrl + '/centrocultural/eventoshoy')
       .map((response:any) => {
 
           for (const item of response) {
-            if(!item.url_imagen){
-                item.url_imagen = '../../assets/imgs/noimage.png';
-            }
-            if(!item.url_trailer){
-              if(item.url_imagen){
-                item.url_trailer = item.url_imagen;
-              }else{
-                item.url_trailer = '../../assets/imgs/noimage.png';
-              }
+            if(!item.url_imagen && !item.imagen){
+                item.url_imagen = no_image;
+                item.imagen = no_image;
             }
 
+            if (!item.url_trailer && item.url_imagen) {
+              item.url_trailer = item.url_imagen;
+            }
+
+            if (!item.url_trailer && item.imagen) {
+              let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
+              item.url_trailer = img;
+            }
+
+            if(item.imagen){
+              let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
+              item.url_imagen = img;
+              item.imagen = img;
+            }
             this.peliculas.push(item);
 
           }
@@ -49,23 +59,36 @@ export class RestProvider {
 
   public getCines(): Observable<Product> {
     console.log('Entro a getCine');
+    let no_image = '../../assets/imgs/noimage.png';
 
     this.cines.splice(0);
     return this.httpClient
       .get(this.baseUrl + '/centrocultural/eventos/cine')
       .map((response:any) => {
 
-          for (const item of response) {
-            if(!item.url_imagen){
-                item.url_imagen = '../../assets/imgs/noimage.png';
-            }
-            if(!item.url_trailer){
-                item.url_trailer = '../../assets/imgs/noimage.png';
-            }
-
-            this.cines.push(item);
-
+        for (const item of response) {
+          if(!item.url_imagen && !item.imagen){
+              item.url_imagen = no_image;
+              item.imagen = no_image;
           }
+
+          if (!item.url_trailer && item.url_imagen) {
+            item.url_trailer = item.url_imagen;
+          }
+
+          if (!item.url_trailer && item.imagen) {
+            let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
+            item.url_trailer = img;
+          }
+
+          if(item.imagen){
+            let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
+            item.url_imagen = img;
+            item.imagen = img;
+          }
+          this.cines.push(item);
+
+        }
           return new Product(response);
       })
   }
@@ -81,11 +104,7 @@ export class RestProvider {
         return response;
       })
   }
-
-  
 }
-
-
 
 export class Product {
   id: number;
@@ -127,7 +146,7 @@ interface algo {
  event_type_id: any;
  id: number;
  idioma: string;
- imagen: string;
+ imagen: any;
  is_online: boolean;
  is_participating: boolean;
  is_published: boolean;

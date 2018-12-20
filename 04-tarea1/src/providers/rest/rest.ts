@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
-  // baseUrl:string = 'http://localhost:8069'
+  //baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  baseUrl:string = 'http://localhost:8069'
 
   peliculas: algo[] = [];
   cines: algo[] = [];
@@ -41,15 +41,17 @@ export class RestProvider {
             }
 
             if (!item.url_trailer && item.imagen) {
-              let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
-              item.url_trailer = img;
+              //let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
+              //item.url_trailer = img;
+              console.log('paso');
+              
             }
 
-            if(item.imagen){
+            /* if(item.imagen){
               let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
               item.url_imagen = img;
               item.imagen = img;
-            }
+            }*/
             this.peliculas.push(item);
 
           }

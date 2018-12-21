@@ -39,7 +39,7 @@ import { RestProvider } from '../providers/rest/rest';
     HttpClientModule,
     PipesModule,
     IonicModule.forRoot(MyApp, {
-        backButtonText: 'Atras',
+        //backButtonText: '',
     })
   ],
   bootstrap: [IonicApp],

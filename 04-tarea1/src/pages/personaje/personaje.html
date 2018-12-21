@@ -10,7 +10,7 @@
     <ion-card color="dark">
 
         <div class="iframe-16-9" *ngIf="trustedVideoUrl">
-            <iframe [src]="trustedVideoUrl ? trustedVideoUrl : null" (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
+            <iframe [src]="trustedVideoUrl" (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
         </div>
         <img *ngIf="!trustedVideoUrl" [src]="personaje.url_imagen" />
 

@@ -8,7 +8,7 @@ import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
   selector: 'page-tab2',
-  templateUrl: 'tab2.html', //'../tab1/tab1.html'
+  templateUrl: 'tab2.html',
 })
 
 export class Tab2Page {
@@ -41,9 +41,14 @@ export class Tab2Page {
     });
   }
 
-  doRefresh(refresher) {
-    console.log('DoRefresh invodado desde tab2.ts');
-    
+  
+
+  verEvento( personaje:any ){
+    console.log('verEvento:', personaje);
+    this.navCtrl.push(PersonajePage, { personaje });
+  }
+
+  doRefresh(refresher) {   
     this.restProv.getCines()
     .subscribe( (response)=>{
       refresher.complete();
@@ -55,14 +60,9 @@ export class Tab2Page {
 
   }
 
-  verEvento( personaje:any ){
-    console.log('verEvento:', personaje);
-    this.navCtrl.push(PersonajePage, { personaje });
-  }
-
   presentLoading() {
     const loader = this.loadingCtrl.create({
-      content: 'Por favor espere...',
+      content: 'Cargando video...',
       duration: 1000,
       dismissOnPageChange: true
     });

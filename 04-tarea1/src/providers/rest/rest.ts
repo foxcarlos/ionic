@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class RestProvider {
 
-  //baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
-  baseUrl:string = 'http://localhost:8069'
+  baseUrl:string = 'http://ec2-18-236-66-28.us-west-2.compute.amazonaws.com:8069'
+  // baseUrl:string = 'http://localhost:8069'
 
   peliculas: algo[] = [];
   cines: algo[] = [];
@@ -36,19 +36,6 @@ export class RestProvider {
                 item.imagen = no_image;
             }
 
-            if (!item.url_trailer && item.url_imagen) {
-              //item.url_trailer = item.url_imagen;
-              console.log('pass');
-              
-            }
-
-            if (!item.url_trailer && item.imagen) {
-              //let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
-              //item.url_trailer = img;
-              console.log('paso');
-              
-            }
-
             /* if(item.imagen){
               let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
               item.url_imagen = img;
@@ -72,24 +59,10 @@ export class RestProvider {
 
         for (const item of response) {
           if(!item.url_imagen && !item.imagen){
-              item.url_imagen = no_image;
-              item.imagen = no_image;
+            item.url_imagen = no_image;
+            item.imagen = no_image;
           }
-
-          if (!item.url_trailer && item.url_imagen) {
-            item.url_trailer = item.url_imagen;
-          }
-
-          if (!item.url_trailer && item.imagen) {
-            let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
-            item.url_trailer = img;
-          }
-
-          if(item.imagen){
-            let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
-            item.url_imagen = img;
-            item.imagen = img;
-          }
+          
           this.cines.push(item);
 
         }

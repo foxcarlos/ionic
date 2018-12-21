@@ -59,7 +59,7 @@ export class Tab1Page {
 
   presentLoading() {
     const loader = this.loadingCtrl.create({
-      content: 'Por favor espere...',
+      content: 'Cargando video...',
       duration: 1000,
       dismissOnPageChange: true
     });

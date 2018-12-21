@@ -37,7 +37,9 @@ export class RestProvider {
             }
 
             if (!item.url_trailer && item.url_imagen) {
-              item.url_trailer = item.url_imagen;
+              //item.url_trailer = item.url_imagen;
+              console.log('pass');
+              
             }
 
             if (!item.url_trailer && item.imagen) {

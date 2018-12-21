@@ -99,12 +99,17 @@ export class PersonajePage {
   ionViewWillEnter(): void {
     console.log(this.personaje.url_trailer);
     
-    this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
-    this.loading = this.loadingCtrl.create({
-      content: 'Por favor espere...'
-    });
-
-    this.loading.present();
+    if(this.personaje.url_trailer){
+      this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
+    
+      this.loading = this.loadingCtrl.create({
+        content: 'Por favor espere...'
+      });
+  
+      this.loading.present();
+    }else{
+      this.trustedVideoUrl = null
+    }
   }
 
   handleIFrameLoadEvent(): void {

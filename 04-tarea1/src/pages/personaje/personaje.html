@@ -9,19 +9,12 @@
 <ion-content padding text-center>
     <ion-card color="dark">
 
-        <!--
-        <button (click)="get_horarios()" ion-button icon-end block color="--app">
-            Ver funciones
-            <ion-icon name="arrow-forward"></ion-icon>
-        </button>
-        -->
-
-        <div class="iframe-16-9">
+        <div class="iframe-16-9" *ngIf="trustedVideoUrl">
             <iframe [src]="trustedVideoUrl ? trustedVideoUrl : null" (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
         </div>
+        <img *ngIf="!trustedVideoUrl" [src]="personaje.url_imagen" />
 
         <ion-card-content text-left>
-            <!--class="card-subtitle" text-wrap-->
             <div style="text-align: justify;">
                 <p>{{personaje.description | mostrarDescripcion}}</p>
             </div>
@@ -29,18 +22,11 @@
 
         <ion-row>
 
-
             <ion-col center text-left>
 
                 <ion-badge color="--app" item-end>
                     {{personaje.sala_id[1] | mostrarSalaFecha: personaje.address_id[1] }}
                 </ion-badge>
-
-                <!--
-                <ion-chip color="--app">
-                    <ion-label>{{personaje.sala_id[1] | mostrarSalaFecha: personaje.address_id[1] }}</ion-label>
-                </ion-chip>
-                -->
 
             </ion-col>
 
@@ -49,12 +35,6 @@
                 <ion-badge color="--app" item-end>
                     {{personaje.clase | mostrarAtp}}
                 </ion-badge>
-
-                <!--
-                <ion-chip color="--app">
-                    <ion-label>{{personaje.clase | mostrarAtp}}</ion-label>
-                </ion-chip>
-                -->
 
             </ion-col>
 
@@ -83,8 +63,6 @@
 
         </ion-card>
     </div>
-
-
 
 
 </ion-content>

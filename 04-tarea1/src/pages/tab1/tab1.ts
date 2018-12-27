@@ -33,7 +33,7 @@ export class Tab1Page {
   } */
 
   getEventosHoy(){
-    this.restProv.getPeliculas()
+    this.restProv.getHoy()
     .subscribe( (response)=>{
       console.log('salio bien get eventos hoy');
     },
@@ -48,7 +48,7 @@ export class Tab1Page {
   }
 
   doRefresh(refresher) {
-    this.restProv.getPeliculas()
+    this.restProv.getHoy()
     .subscribe( (response)=>{
       refresher.complete();
     },
@@ -69,7 +69,7 @@ export class Tab1Page {
 
   doInfinite(infiniteScroll) {
 	  console.log('Comienza la operacion asincrona');
-    this.restProv.getPeliculas()
+    this.restProv.getHoy()
     .subscribe( (respon_promise)=>{
       this.hayMas = respon_promise;
       infiniteScroll.complete()

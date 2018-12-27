@@ -53,7 +53,7 @@ export class RestProvider {
     return promesa;
   } */
 
-  public getPeliculas() {
+  public getHoy() {
     console.log('Entro a getPeli');
 
     let no_image = '../../assets/imgs/noimage.png';

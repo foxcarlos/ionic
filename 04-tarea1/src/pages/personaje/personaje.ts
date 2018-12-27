@@ -68,11 +68,11 @@ export class PersonajePage {
 
     let dia_semana = weekday[d.getDay()];
     let dia = d.getDate();
-    let mes = monthday[d.getMonth()];
+    let mes = monthday[parseInt(d.toLocaleString().split('/')[0])];
     let anio = d.getFullYear();
     let hora = d.getHours();
     let minutos:any = d.getMinutes();
-    console.log(minutos);
+    console.log(d);
     
     if(minutos==0){
       minutos = `${minutos}0`
@@ -81,7 +81,7 @@ export class PersonajePage {
     /* "2018-12-09 20:00:00"
     "Jue 12 de Dic 20:00" */
     console.log(d.toDateString());
-    return `${dia_semana.slice(0,3)} ${dia} de ${mes.slice(0,3)} ${hora}:${minutos}`
+    return `${dia_semana.slice(0,3)} ${dia} de ${mes.slice(0,3)} - Hora: ${hora}:${minutos}`
   }
 
   armar_horarios(lista_horarios){

@@ -20,7 +20,40 @@ export class RestProvider {
     console.log('Hello RestProvider Provider');
   }
 
-  public getPeliculas(): Observable<Product> {
+  /* cargar_imagenes(){
+    let cantidad_imagenes_cargar:number = 3
+    let promesa = new Promise( (resolve, reject)=>{
+        this.afDB.list('/post',
+            ref=> ref.limitToLast(cantidad_imagenes_cargar)
+                     .orderByKey()
+                     .endAt( this.lastKey )
+        ).valueChanges()
+        .subscribe( (respon:any)=>{
+              // Elimino la ultima imagen del arreglo
+              respon.pop();
+
+              if(respon.length == 0){
+                  console.log('Ya no hay mas imagenes para mostrar');
+                  resolve(false);
+                  return;
+              }
+
+              this.lastKey = respon[0].key;
+              // De todas lasimagenes obtenida de firebase
+              // recorrerlas y guardarlas en mi arreglo de imagenes
+              // para mostarlas en mi app
+              for( let i = respon.length-1; i>=0; i-- ){
+                  let post = respon[i];
+                  this.imagenes.push(post);
+              }
+              resolve(true);
+         });
+    });
+
+    return promesa;
+  } */
+
+  public getPeliculas() {
     console.log('Entro a getPeli');
 
     let no_image = '../../assets/imgs/noimage.png';
@@ -36,15 +69,9 @@ export class RestProvider {
                 item.imagen = no_image;
             }
 
-            /* if(item.imagen){
-              let img = 'data:image/jpg;base64,' + item.imagen.replace(/'/gi, '').replace('b', '')
-              item.url_imagen = img;
-              item.imagen = img;
-            }*/
             this.peliculas.push(item);
-
           }
-          return new Product(response);
+          return true;
       })
   }
 

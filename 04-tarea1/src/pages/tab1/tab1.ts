@@ -15,6 +15,7 @@ export class Tab1Page {
 
   personajePage: any = PersonajePage;
   titulo_head: string = 'Eventos para hoy';
+  hayMas:boolean = true;
 
   constructor(public navCtrl: NavController,
               public restProv: RestProvider,
@@ -64,6 +65,19 @@ export class Tab1Page {
       dismissOnPageChange: true
     });
     loader.present();
+  }
+
+  doInfinite(infiniteScroll) {
+	  console.log('Comienza la operacion asincrona');
+    this.restProv.getPeliculas()
+    .subscribe( (respon_promise)=>{
+      this.hayMas = respon_promise;
+      infiniteScroll.complete()
+    },
+    (err) =>{
+      console.log('Error al intentar hacer refresh:', err);
+      infiniteScroll.complete()
+    });
   }
   
 }

@@ -1,0 +1,16 @@
+.fa-icons-general {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+.ion-ios-fa-sitemap::before,
+.ion-ios-fa-sitemap-outline::before,
+.ion-md-fa-sitemap::before {
+    @extend .fa-icons-general;
+    content: "\f0e8";
+}

@@ -18,3 +18,20 @@
         background-color: #303030;
     }
 }
+
+ion-icon {
+    &[class*="custom-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+    &[class*="custom-tickets"] {
+        mask-image: url(../assets/imgs/058-ticket.svg);
+    }
+    &[class*="custom-teatro"] {
+        mask-image: url(../assets/imgs/mascaras_Teatro2.svg);
+    }
+}

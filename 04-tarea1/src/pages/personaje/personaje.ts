@@ -14,7 +14,9 @@ export class PersonajePage {
   trustedVideoUrl: SafeResourceUrl;
   loading: Loading;
   horarios_global: any = [];
-  
+  estaActivo: boolean = false;
+  contMeGusta = 0;
+
   constructor(public navCtrl: NavController,
 
                 public navParams: NavParams,
@@ -37,7 +39,7 @@ export class PersonajePage {
       (err) =>{
         console.log('Error al intentar obterner e horario:', err);
       });
-    
+
   }
 
   parse_fecha(fecha: string){
@@ -73,10 +75,10 @@ export class PersonajePage {
     let hora = d.getHours();
     let minutos:any = d.getMinutes();
     console.log(d);
-    
+
     if(minutos==0){
       minutos = `${minutos}0`
-    }    
+    }
 
     /* "2018-12-09 20:00:00"
     "Jue 12 de Dic 20:00" */
@@ -89,23 +91,23 @@ export class PersonajePage {
 
     for (const horario of lista_horarios) {
       let fecha_evento = new Date(horario);
-      
+
       if( fecha_evento >= fecha_hoy){
         this.horarios_global.push(this.parse_fecha(horario));
       }
     }
   }
- 
+
   ionViewWillEnter(): void {
     console.log('Lo que trae url_trailer', this.personaje.url_trailer);
-    
+
     if(this.personaje.url_trailer){
       this.trustedVideoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(this.personaje.url_trailer);
-    
+
       this.loading = this.loadingCtrl.create({
         content: 'Cargando el video...'
       });
-  
+
       this.loading.present();
 
     }else{
@@ -121,5 +123,15 @@ export class PersonajePage {
     this.navCtrl.pop();
   }
 
+  meGusta(event) {
+    console.log(this.estaActivo);
+    if(this.estaActivo){
+      this.estaActivo=false;
+      this.contMeGusta-=1
+    }else{
+      this.estaActivo=true;
+      this.contMeGusta+=1
+    }
+  }
 
 }

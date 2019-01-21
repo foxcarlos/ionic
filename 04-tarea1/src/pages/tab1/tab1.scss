@@ -34,4 +34,9 @@ page-tab1 {
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    ion-title {
+        line-height: 40px;
+        padding-left: 50px;
+        background: url('../../assets/imgs/icono40x40_sin_fondo.png') no-repeat left center;
+    }
 }

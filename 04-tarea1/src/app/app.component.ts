@@ -21,6 +21,7 @@ export class MyApp {
       //statusBar.backgroundColorByHexString('#ffffff');
 
       statusBar.styleBlackTranslucent();//styleDefault();
+      statusBar.overlaysWebView(false);
       splashScreen.hide();
     });
   }

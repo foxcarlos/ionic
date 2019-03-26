@@ -9,7 +9,28 @@ export class Pagina2Page implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
   }
+
+  ngOnInit() {
+    console.log('ngOnInit');
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter');
+  }
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter');
+  }
+  ionViewWillLeave() {
+    console.log('ionViewWillLeave');
+  }
+  ionViewDidLeave() {
+    console.log('ionViewDidLeave');
+  }
+  ionViewWillUnload() {
+    console.log('ionViewWillUnload');
+    } // ngOnDestroy
 
 }

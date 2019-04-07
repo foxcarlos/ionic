@@ -8,7 +8,7 @@
 
 <ion-content padding>
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullMax="200" pullmin="100">
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Abajo para refrescar" refreshingSpinner="circles" refreshingText="Refrescando...">
         </ion-refresher-content>
     </ion-refresher>

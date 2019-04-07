@@ -6,14 +6,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
-import { ToastController } from '@ionic/angular';
 
 // Plugins
-import { Geofence } from '@ionic-native/geofence/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PushnotificationService } from './services/pushnotification.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,8 +21,8 @@ import { Geofence } from '@ionic-native/geofence/ngx';
   providers: [
     StatusBar,
     SplashScreen,
-    Geofence,
-    ToastController,
+    OneSignal,
+    PushnotificationService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

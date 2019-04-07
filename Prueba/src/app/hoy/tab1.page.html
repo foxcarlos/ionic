@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Hoy
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card class="welcome-card">
+        <ion-img src="/assets/shapes.svg"></ion-img>
+        <ion-card-header>
+            <ion-card-subtitle>Get Started</ion-card-subtitle>
+            <ion-card-title>Welcome to Ionic</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-button color="primary" (click)="conectarBT()">
+                Conectar
+            </ion-button>
+
+            <ion-button color="secondary" (click)="leerBT()">
+                Leer BT
+            </ion-button>
+
+            <ion-button color="tertiary" (click)="leerBT2()">
+                Leer BT2
+            </ion-button>
+
+            <p>{{leido}}</p>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

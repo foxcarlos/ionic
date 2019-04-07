@@ -6,6 +6,16 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+// para la mueva version
+/* import { map } from 'rxjs/operators'
+getFunncioesTeatro(){
+  return this.httpClient.get('unaurl')
+  .pipe( map( data =>{
+    return data['albums'].items;
+  }));
+}
+ */
+
 @Injectable()
 export class RestProvider {
 

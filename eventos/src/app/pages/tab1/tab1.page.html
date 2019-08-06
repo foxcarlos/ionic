@@ -1,0 +1,42 @@
+<ion-header no-border>
+    <ion-toolbar color="dark">
+        <ion-title>
+            Eventos para hoy
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+    <ion-grid fixed>
+
+        <ion-row>
+            <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12" *ngFor="let evento of eventos; let i=index">
+
+                <ion-card color="dark">
+
+                    <ion-card-header>
+                        <ion-card-subtitle>
+                            <span class="text-primary"> {{ i + 1 }}. </span>
+                            <span class="evento_event_type">{{ evento.event_type_id[1] }}</span>
+                        </ion-card-subtitle>
+
+                        <ion-card-title> {{ evento.titulo_original }} </ion-card-title>
+                    </ion-card-header>
+
+                    <ion-img *ngIf="evento.url_imagen" [src]="evento.url_imagen">
+                    </ion-img>
+
+                    <ion-card-content>
+                        <p>
+                            {{ evento.description }}
+                        </p>
+                    </ion-card-content>
+
+                </ion-card>
+
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+</ion-content>
